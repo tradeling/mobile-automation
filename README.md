@@ -25,6 +25,8 @@ You may follow this link for more step by step details for the setup https://www
 - Log methods available in Logger class: `logPass(description)`, `logFail(description, exception)`
 - Fail logger automatically captures the screenshot
 
+<img width="1792" alt="Screen Shot 2022-02-16 at 11 54 13 AM" src="https://user-images.githubusercontent.com/17287880/154220250-9194740f-02c5-44e0-8959-63602e70f7bb.png">
+
 ## Page Objects
 
 - Create one screen as a class and add locators to the same class
