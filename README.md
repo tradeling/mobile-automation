@@ -1,4 +1,34 @@
-# mobile-automation
+<h1 align="center">
+
+[![BROWSERSTACK-DASHBOARD](https://img.shields.io/badge/BROWSERSTACK-DASHBOARD-yellow)](https://app-automate.browserstack.com/dashboard/v2/builds/5f62542718e255e637258e57965570b5e0beb888)
+[![ENGINEERING-PRACTICES](https://img.shields.io/badge/ENGINEERING-PRACTICES-red)](https://github.com/tradeling/coding-guide/blob/master/10-engineering-principles.md)
+[![LOCAL-DEV_GUIDE](https://img.shields.io/badge/LOCAL-DEV_GUIDE-blue)](https://github.com/tradeling/coding-guide/blob/master/11-local-environment.md)
+[![API-DESIGN_GUIDE](https://img.shields.io/badge/API-DESIGN_GUIDE-brightgreen)](https://github.com/tradeling/coding-guide/blob/master/12-api-design-guide.md)
+[![MANUAL TEST CASES](https://img.shields.io/badge/MANUAL-TEST_CASES-green)](https://tradeling.atlassian.net/projects/QTM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.xpandit.plugins.xray__testing-board#!page=test-repository)
+[![GITHUB BEST PRACTICES](https://img.shields.io/badge/GITHUB-BEST_PRACTICES-orange)](https://github.com/tradeling/engineering-guide/blob/develop/onboarding/onboarding-github-guide.md)
+
+</h1>
+
+
+```markdown
+💡🚨 Improve the document - if you find it outdated or something missing.
+"Leave the place better than you found it - Always." ~ Everyone
+```
+
+```markdown
+💡🚨 We choose to go to the moon in this decade and do the other things,
+not because they are easy, but because they are hard. -- John F. Kennedy, 1962
+```
+
+```markdown
+💡🚨 "15 min rule"
+We are collaborative and very friendly, but we value your time and other people time, So
+
+- If you have any question about anything, google it first.
+- If you couldn't find the answer in 15 minutes then you are free to ask your colleagues.
+```
+
+# Mobile Automation Guidelines
 
 # Pre-Requisites
 
