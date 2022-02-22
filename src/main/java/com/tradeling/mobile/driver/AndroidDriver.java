@@ -9,20 +9,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.net.URL;
 
-public class AndroidDriver {
+public class AndroidDriver extends Driver{
 
     PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
 
-    public AppiumDriver<MobileElement> createDriver() {
+    @Override
+    public AppiumDriver<MobileElement> createLocalDriver() {
+
         AppiumDriver<MobileElement> driver = null;
         DesiredCapabilities caps = new DesiredCapabilities();
         try {
-
             // condition to handle if for launching directly the app or using apk
-            String appPath = propertyFileHandle.getPropertyForAndroidConfig("appPath") + "/" + propertyFileHandle.getPropertyForAndroidConfig("appName");
-
+            String appPath = propertyFileHandle.getPropertyForAndroidConfig("appPath");
+            String appName = propertyFileHandle.getPropertyForAndroidConfig("appName");
             if(!appPath.isEmpty()){
-                caps.setCapability(MobileCapabilityType.APP, new File(appPath).getAbsolutePath());
+                caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
 
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, propertyFileHandle.getPropertyForAndroidConfig("deviceName"));
@@ -34,9 +35,33 @@ public class AndroidDriver {
             caps.setCapability(MobileCapabilityType.NO_RESET, "true");
             driver = new io.appium.java_client.android.AndroidDriver<MobileElement>(new URL(
                     "http://" + propertyFileHandle.getPropertyForAppiumConfig("appiumServer") + ":" + propertyFileHandle.getPropertyForAppiumConfig("appiumPort") + "/wd/hub"), caps);
-        } catch (Exception e) {
+        }catch (Exception e)
+        {
             e.printStackTrace();
         }
+
+        return driver;
+    }
+
+    @Override
+    public AppiumDriver<MobileElement> createRemoteDriver() {
+
+        AppiumDriver<MobileElement> driver = null;
+        DesiredCapabilities caps = new DesiredCapabilities();
+        try{
+            caps.merge(super.caps);
+            // Specify device and os_version for testing
+            caps.setCapability("app", "bs://" + androidRemoteApp);
+            caps.setCapability("device", remoteAndroidDevice);
+            caps.setCapability("os_version", remoteAndroidVersion);
+            driver = new io.appium.java_client.android.AndroidDriver<MobileElement>(
+                    new URL(remoteUrl), caps);
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         return driver;
     }
 }

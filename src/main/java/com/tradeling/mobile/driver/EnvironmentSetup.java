@@ -1,15 +1,18 @@
 package com.tradeling.mobile.driver;
 
 import com.tradeling.reporting.Reporting;
+import com.tradeling.utilities.PropertyFileHandle;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
 
 public class EnvironmentSetup {
 
+    public static String env = System.getProperty("environment");
     MobileDriver mobDriver = new MobileDriver();
-    Reporting reporting;
-    public static ThreadLocal<String> env = new ThreadLocal<String>();
+    static Reporting reporting;
+    public static PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
+    public static ThreadLocal<String> platform = new ThreadLocal<String>();
 
     public ThreadLocal<MobileActions> actions = new ThreadLocal<MobileActions>();
 
@@ -17,33 +20,56 @@ public class EnvironmentSetup {
     public void initEnvironment() {
         reporting = new Reporting();
         reporting.initiateReport();
-        mobDriver.appiumInit();
+        if(env.equalsIgnoreCase("local")) {
+            mobDriver.appiumInit();
+        }
     }
 
 
     @BeforeTest(alwaysRun = true)
     @Parameters("deviceType")
     public void initDriver(String deviceType) {
-        env.set(deviceType);
+        platform.set(deviceType);
+        Driver driver = null;
         if(deviceType.equalsIgnoreCase("android")) {
-            actions.set( new MobileActions(new AndroidDriver().createDriver()));
+            driver = new AndroidDriver();
         }
         else if(deviceType.equalsIgnoreCase("ios")) {
-            actions.set( new MobileActions(new IosDriver().createDriver()));
+            driver = new IosDriver();
+        }
+        if(env.equalsIgnoreCase("local")){
+            actions.set(new MobileActions(driver.createLocalDriver()));
+        }
+        else if(env.equalsIgnoreCase("remote")){
+            actions.set(new MobileActions(driver.createRemoteDriver()));
         }
 
     }
 
+    @Parameters("deviceType")
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(Method method)
+    public void beforeMethod(String deviceType, Method method)
     {
-        reporting.setLogger(method.getName());
+        try {
+            String test = method.getName();
+            reporting.setLogger(method.getName() + " ("+ deviceType+")");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest()
+    {
+        actions.get().killDriver();
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
-        mobDriver.killAppiumService();
+        if(env.equalsIgnoreCase("local")) {
+            mobDriver.killAppiumService();
+        }
     }
 }
