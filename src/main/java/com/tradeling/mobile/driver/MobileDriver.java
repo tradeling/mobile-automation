@@ -13,7 +13,7 @@ public class MobileDriver {
 
     AppiumDriverLocalService appiumService;
     AppiumServiceBuilder serviceBuilder;
-    PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
+    PropertyFileHandle propertyFileHandle = EnvironmentSetup.propertyFileHandle;
 
     public void appiumInit(){
         try {

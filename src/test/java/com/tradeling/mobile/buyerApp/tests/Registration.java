@@ -5,6 +5,7 @@ import com.tradeling.data.Constants;
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.*;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Registration extends EnvironmentSetup {
@@ -17,11 +18,14 @@ public class Registration extends EnvironmentSetup {
     DocumentUploadScreen documentUploadScreen;
     OTPScreen otpScreen;
 
+
     @Test
     private void register_new_buyer(){
 
         launchScreen = new LaunchScreen(actions.get());
-        launchScreen.acceptNotificationAlert(false);
+        if(platform.get().equalsIgnoreCase("ios")) {
+            launchScreen.acceptNotificationAlert(false);
+        }
         launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
 
         loginScreen = new LoginScreen(actions.get());
