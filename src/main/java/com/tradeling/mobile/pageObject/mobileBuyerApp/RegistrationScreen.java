@@ -123,7 +123,7 @@ public class RegistrationScreen {
 
     public void addLoginCredentials(String email, String password){
         actions.enterText(textBox_email, email);
-        actions.waitFor();
+//        actions.waitFor();
         actions.enterText(textBox_password, password);
         actions.hideKeyboard();
         actions.click(button_submit);

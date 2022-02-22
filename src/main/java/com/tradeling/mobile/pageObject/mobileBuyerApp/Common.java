@@ -3,9 +3,6 @@ package com.tradeling.mobile.pageObject.mobileBuyerApp;
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.driver.MobileActions;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 
 public class Common {
 
@@ -30,21 +27,14 @@ public class Common {
 
     public MobileElement getElement(String locatorIos, String locatorAndroid)
     {
-        if(EnvironmentSetup.env.get().equalsIgnoreCase("ios")){
-            return getLocator(locatorIos);
+        if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+            return actions.getLocator(locatorIos);
         }
-        else if(EnvironmentSetup.env.get().equalsIgnoreCase("android")){
-            return getLocator(locatorAndroid);
+        else if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
+            return actions.getLocator(locatorAndroid);
         }
         return null;
     }
 
-    public MobileElement getLocator(String locator){
-        String locatorValue= locator.split(":")[1];
-        switch (locator.split("-")[0]){
-            case "xpath" : return actions.getDriver().findElement(By.xpath(locatorValue));
-            case "ID" : return actions.getDriver().findElement(By.id(locatorValue));
-            default: return null;
-        }
-    }
+
 }

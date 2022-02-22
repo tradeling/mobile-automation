@@ -204,4 +204,29 @@ public class MobileActions {
         }
     }
 
+    public MobileElement getLocator(String locator) {
+        String locatorValue = locator.split(":")[1];
+        try {
+            switch (locator.split("-")[0]) {
+                case "xpath":
+                    return getDriver().findElement(By.xpath(locatorValue));
+                case "id":
+                    return getDriver().findElement(By.id(locatorValue));
+                case "name":
+                    return getDriver().findElement(By.name(locatorValue));
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Element with locator '" + locator + "' is not found", e);
+            return null;
+        }
+    }
+
+    public void killDriver()
+    {
+        getDriver().quit();
+    }
+
 }

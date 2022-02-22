@@ -56,7 +56,7 @@ public class HomeScreen {
         boolean flag = false;
         actions.click(link_account);
 
-        if(actions.waitForElementToDisplay(actions.getDriver().findElement(By.name(companyName)))){
+        if(actions.waitForElementToDisplay(actions.getLocator("name-ios:"+companyName))){
             flag = true;
             Reporting.getLogger().logPass("Company/User successfully registered");
         }

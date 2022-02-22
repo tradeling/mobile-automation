@@ -7,7 +7,9 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.tradeling.utilities.Utilities;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 public class Reporting {
@@ -19,6 +21,8 @@ public class Reporting {
     public static String screenShotLoc = "";
     public static ExtentReports extent;
 
+
+
     public void initiateReport() {
         runId = Utilities.createUniqueId(999999);
         System.out.println("Run id: " + runId);
@@ -28,6 +32,7 @@ public class Reporting {
         extent.attachReporter(spark);
         setReportConfig();
     }
+
 
     private void setReportConfig(){
       spark.config(ExtentSparkReporterConfig.builder().theme(Theme.DARK).reportName("Tradeling Mobile Buyer App").documentTitle("Tradeling").build());
