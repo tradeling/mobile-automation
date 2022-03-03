@@ -20,12 +20,13 @@ public class LaunchScreen {
 
     MobileActions actions;
 
+
     @iOSXCUITFindBy(accessibility = "CONTINUE")
-    @AndroidFindBy(accessibility = "CONTINUE")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement btn_continue;
 
     @iOSXCUITFindBy(accessibility = "English")
-    @AndroidFindBy(accessibility = "English")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='English']")
     MobileElement label_englishLang;
 
     @iOSXCUITFindBy(accessibility = "العربية")

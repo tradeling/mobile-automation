@@ -13,7 +13,7 @@ public class RegistrationScreen {
     MobileActions actions;
 
     @iOSXCUITFindBy(accessibility = "Create your Business profile")
-    @AndroidFindBy(accessibility = "Create your Business profile")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Create your Business profile']")
     MobileElement label_createOwnProfile;
 
     @iOSXCUITFindBy(accessibility = "auth_want_to_buy_register")
@@ -25,7 +25,7 @@ public class RegistrationScreen {
     MobileElement link_iWantToSell;
 
     @iOSXCUITFindBy(accessibility = "Company name* auth_email_address_register")
-    @AndroidFindBy(accessibility = "Company name* auth_email_address_register")
+    @AndroidFindBy(accessibility = "auth_email_address_register")
     MobileElement textBox_companyName;
 
     @iOSXCUITFindBy(accessibility = "auth_select_country_register")
@@ -41,7 +41,7 @@ public class RegistrationScreen {
     MobileElement link_searchedCountry;
 
     @iOSXCUITFindBy(accessibility = "NEXT")
-    @AndroidFindBy(accessibility = "NEXT")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NEXT']")
     MobileElement button_next;
 
     @iOSXCUITFindBy(accessibility = "Email address auth_email_address_register")
@@ -53,7 +53,7 @@ public class RegistrationScreen {
     MobileElement textBox_password;
 
     @iOSXCUITFindBy(accessibility = "auth_register_next_button")
-    @AndroidFindBy(accessibility = "SUBMIT AND CONTINUE")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SUBMIT AND CONTINUE']")
     MobileElement button_submit;
 
 
@@ -123,7 +123,6 @@ public class RegistrationScreen {
 
     public void addLoginCredentials(String email, String password){
         actions.enterText(textBox_email, email);
-//        actions.waitFor();
         actions.enterText(textBox_password, password);
         actions.hideKeyboard();
         actions.click(button_submit);

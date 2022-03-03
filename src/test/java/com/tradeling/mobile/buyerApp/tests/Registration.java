@@ -17,6 +17,7 @@ public class Registration extends EnvironmentSetup {
     BusinessProfileScreen businessProfileScreen;
     DocumentUploadScreen documentUploadScreen;
     OTPScreen otpScreen;
+    AccountScreen accountScreen;
 
 
     @Test
@@ -63,9 +64,12 @@ public class Registration extends EnvironmentSetup {
         documentUploadScreen.acceptTermsAndCondition();
 
         homeScreen = new HomeScreen(actions.get());
-        Assert.assertTrue(homeScreen.verifyUserRegistered(buyerData.getCompanyName()));
+        homeScreen.navigateToAccountScreen();
+        accountScreen = new AccountScreen(actions.get());
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName()));
 
     }
+
 
 
 }

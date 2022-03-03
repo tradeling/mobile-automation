@@ -7,6 +7,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
+import java.lang.management.MonitorInfo;
 import java.net.URL;
 
 public class AndroidDriver extends Driver{
@@ -32,7 +33,11 @@ public class AndroidDriver extends Driver{
             caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, propertyFileHandle.getPropertyForAndroidConfig("version"));
             caps.setCapability("appActivity", propertyFileHandle.getPropertyForAndroidConfig("appActivity"));
             caps.setCapability("appPackage", propertyFileHandle.getPropertyForAndroidConfig("appPackage"));
-            caps.setCapability(MobileCapabilityType.NO_RESET, "true");
+            caps.setCapability("autoGrantPermissions", true);
+            caps.setCapability(MobileCapabilityType.NO_RESET, false);
+            caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 60);
+//            caps.setCapability("unicodeKeyboard", true);
+//            caps.setCapability("resetKeyboard", false);
             driver = new io.appium.java_client.android.AndroidDriver<MobileElement>(new URL(
                     "http://" + propertyFileHandle.getPropertyForAppiumConfig("appiumServer") + ":" + propertyFileHandle.getPropertyForAppiumConfig("appiumPort") + "/wd/hub"), caps);
         }catch (Exception e)
@@ -54,6 +59,7 @@ public class AndroidDriver extends Driver{
             caps.setCapability("app", "bs://" + androidRemoteApp);
             caps.setCapability("device", remoteAndroidDevice);
             caps.setCapability("os_version", remoteAndroidVersion);
+            caps.setCapability("autoGrantPermissions", true);
             driver = new io.appium.java_client.android.AndroidDriver<MobileElement>(
                     new URL(remoteUrl), caps);
 

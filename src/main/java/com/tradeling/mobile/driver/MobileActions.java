@@ -7,14 +7,11 @@ import io.appium.java_client.MobileElement;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.NoSuchElementException;
-import java.util.function.Function;
 
 public class MobileActions {
 
@@ -30,7 +27,7 @@ public class MobileActions {
 
     public void click(MobileElement ele) {
         try {
-            waitForElementToDisplay(ele);
+            waitForElementIsClickable(ele);
             ele.click();
             Reporting.getLogger().logPass("Click on field '" + Utilities.getElementNameString(ele) + "'");
         } catch (Exception e) {
@@ -118,7 +115,9 @@ public class MobileActions {
 
     public void hideKeyboard() {
         try{
-            getDriver().getKeyboard().sendKeys("\n");
+            if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")) {
+                getDriver().getKeyboard().sendKeys("\n");
+            }
         }
         catch (Exception e)
         {
@@ -129,25 +128,10 @@ public class MobileActions {
 
     public boolean waitForElementToDisplay(MobileElement ele) {
 
-            FluentWait<MobileElement> _waitForElement = new FluentWait<MobileElement>(ele);
-            _waitForElement.pollingEvery(pollingDuration);
-            _waitForElement.withTimeout(timeOutDuration);
-            _waitForElement.ignoring(NoSuchElementException.class);
-            _waitForElement.ignoring(StaleElementReferenceException.class);
-            _waitForElement.ignoring(ElementNotVisibleException.class);
-            Function<WebElement, Boolean> elementVisibility =null;
-        try {
-           elementVisibility = new Function<WebElement, Boolean>() {
-
-                public Boolean apply(WebElement element) {
-                    // TODO Auto-generated method stub
-                    return element.isDisplayed();
-                }
-
-            };
-            return _waitForElement.until(elementVisibility);
-
-
+        try{
+            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            wait.until(ExpectedConditions.visibilityOf(ele));
+            return ele.isDisplayed();
         } catch (Exception e) {
             e.printStackTrace();
             Reporting.getLogger().logFail("Element " + Utilities.getElementNameString(ele) + " is not visible/enabled", e);
@@ -158,25 +142,10 @@ public class MobileActions {
 
     public boolean waitForElementIsEnabled(MobileElement ele) {
 
-        FluentWait<MobileElement> _waitForElement = new FluentWait<MobileElement>(ele);
-        _waitForElement.pollingEvery(pollingDuration);
-        _waitForElement.withTimeout(timeOutDuration);
-        _waitForElement.ignoring(NoSuchElementException.class);
-        _waitForElement.ignoring(StaleElementReferenceException.class);
-        _waitForElement.ignoring(ElementNotVisibleException.class);
-        Function<MobileElement, Boolean> elementEnable =null;
         try {
-            elementEnable = new Function<MobileElement, Boolean>() {
-
-                public Boolean apply(MobileElement element) {
-                    // TODO Auto-generated method stub
-                    return element.isEnabled();
-                }
-
-            };
-            return _waitForElement.until(elementEnable);
-
-
+            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            wait.until(ExpectedConditions.visibilityOf(ele));
+            return ele.isEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             Reporting.getLogger().logFail("Element " + Utilities.getElementNameString(ele) + " is not visible/enabled", e);
@@ -185,6 +154,20 @@ public class MobileActions {
 
     }
 
+    public boolean waitForElementIsClickable(MobileElement ele) {
+
+        try {
+
+            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            wait.until(ExpectedConditions.elementToBeClickable(ele));
+            return ele.isEnabled();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Element " + Utilities.getElementNameString(ele) + " is not visible/enabled", e);
+            return false;
+        }
+
+    }
 
 
     public AppiumDriver<MobileElement> getDriver(){
@@ -205,7 +188,7 @@ public class MobileActions {
     }
 
     public MobileElement getLocator(String locator) {
-        String locatorValue = locator.split(":")[1];
+        String locatorValue = locator.split(":",2)[1];
         try {
             switch (locator.split("-")[0]) {
                 case "xpath":
