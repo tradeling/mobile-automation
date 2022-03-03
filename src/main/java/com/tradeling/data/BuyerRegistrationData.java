@@ -34,7 +34,7 @@ public class BuyerRegistrationData {
         this.userType = userType;
         this.countryOfOperations = countryOfOperations;
         this.companyName = "Test auto company" + Utilities.createUniqueId(9999);
-        this.email = "testauto" + Utilities.createUniqueId(9999) + "@test.com";
+        this.email = "testauto" + Utilities.createUniqueId(99999) + "@test"+Utilities.createUniqueId(99999)+".com";
         this.password = "testpassword";
         this.firstName = "Test Auto F" + Utilities.createUniqueId(99);
         this.lastName = "Test Auto L" + Utilities.createUniqueId(99);

@@ -4,12 +4,12 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.tradeling.mobile.driver.MobileActions;
 
-public class Logger {
+public class Logger{
 
     ExtentTest extentTest;
 
     public Logger(ExtentTest extentTest) {
-        this.extentTest = extentTest;
+        this.extentTest =  extentTest;
     }
 
     public void logPass(String description){

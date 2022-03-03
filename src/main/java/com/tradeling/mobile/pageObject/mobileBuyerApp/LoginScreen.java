@@ -30,7 +30,7 @@ public class LoginScreen {
     MobileElement link_continueAsGuest;
 
     @iOSXCUITFindBy(accessibility = "auth_register_by_username")
-    @AndroidFindBy(accessibility = "auth_register_by_username")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='REGISTER']")
     MobileElement link_registration;
 
     public LoginScreen(MobileActions action) {

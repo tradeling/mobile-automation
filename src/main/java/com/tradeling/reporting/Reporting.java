@@ -1,6 +1,7 @@
 package com.tradeling.reporting;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -20,10 +21,11 @@ public class Reporting {
     public static String runId = "";
     public static String screenShotLoc = "";
     public static ExtentReports extent;
+    static Map<Long, ExtentTest> extentTestMap = new HashMap<>();
 
 
 
-    public void initiateReport() {
+    public synchronized void initiateReport() {
         runId = Utilities.createUniqueId(999999);
         System.out.println("Run id: " + runId);
         createReportDirectory();
@@ -42,12 +44,12 @@ public class Reporting {
         extent.flush();
     }
 
-    public void setLogger(String testName){
+    public synchronized void setLogger(String testName){
         Logger logger = new Logger(extent.createTest(testName.replace("_"," ").toUpperCase(Locale.ROOT)));
         loggerThreadLocal.set(logger);
     }
 
-    public static Logger getLogger(){
+    public synchronized static Logger getLogger(){
         return loggerThreadLocal.get();
     }
 

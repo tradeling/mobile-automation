@@ -1,5 +1,6 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
+import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.driver.MobileActions;
 import com.tradeling.reporting.Reporting;
 import io.appium.java_client.MobileElement;
@@ -15,7 +16,7 @@ public class DocumentUploadScreen {
     MobileActions actions;
 
     @iOSXCUITFindBy(accessibility = "Document upload")
-    @AndroidFindBy(accessibility = "Document upload")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Document upload']")
     MobileElement label_documentUpload;
 
     @iOSXCUITFindBy(accessibility = "UPLOAD LATER")
@@ -23,91 +24,101 @@ public class DocumentUploadScreen {
     MobileElement button_uploadLater;
 
     @iOSXCUITFindBy(accessibility = "auth_login_button")
-    @AndroidFindBy(accessibility = "auth_login_button")
+    @AndroidFindBy(xpath = "(//android.view.ViewGroup[@resource-id='auth_login_button'])[1]")
     MobileElement button_uploadNow;
 
 
     @iOSXCUITFindBy(accessibility = "UPLOAD TRADE LICENSE")
-    @AndroidFindBy(accessibility = "UPLOAD TRADE LICENSE")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPLOAD TRADE LICENSE']")
     MobileElement button_uploadTradeLicense;
 
 
     @iOSXCUITFindBy(accessibility = "Upload Trade License")
-    @AndroidFindBy(accessibility = "Upload Trade License")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Upload Trade License']")
     MobileElement label_uploadTradeLicense;
 
     @iOSXCUITFindBy(accessibility = "Upload from gallery")
-    @AndroidFindBy(accessibility = "Upload from gallery")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Browse']")
     MobileElement link_uploadFromGallery;
 
+
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeImage")
-    @AndroidFindBy(xpath = "Upload from gallery")
+    @AndroidFindBy(id = "com.android.documentsui:id/icon_thumb")
     MobileElement icon_docUpload;
 
     @iOSXCUITFindBy(accessibility = "Trade license expiry date")
-    @AndroidFindBy(accessibility = "Trade license expiry date")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade license expiry date']")
     MobileElement link_tradeLicenseExpiry;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypePickerWheel")
-    @AndroidFindBy(accessibility = "")
+    @AndroidFindBy(accessibility = "//")
     List<MobileElement> datePickerWheel;
 
-    @iOSXCUITFindBy(accessibility = "Confirm")
-    @AndroidFindBy(accessibility = "Confirm")
-    MobileElement button_confirmDate;
-
     @iOSXCUITFindBy(accessibility = "upload_next_verification")
-    @AndroidFindBy(accessibility = "upload_next_verification")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='NEXT']")
     MobileElement button_nextDocUpload;
 
     @iOSXCUITFindBy(accessibility = "Upload Identity Document")
-    @AndroidFindBy(accessibility = "Upload Identity Document")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Upload Identity Document']")
     MobileElement label_uploadIdentityDoc;
 
     @iOSXCUITFindBy(accessibility = "UPLOAD IDENTITY DOCUMENT")
-    @AndroidFindBy(accessibility = "UPLOAD IDENTITY DOCUMENT")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPLOAD IDENTITY DOCUMENT']")
     MobileElement button_uploadIdentityDoc;
 
     @iOSXCUITFindBy(accessibility = "Expiry date")
-    @AndroidFindBy(accessibility = "Expiry date")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Expiry date']")
     MobileElement link_identityExpiry;
 
     @iOSXCUITFindBy(accessibility = "Upload VAT Certificate")
-    @AndroidFindBy(accessibility = "Upload VAT Certificate")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Upload VAT Certificate']")
     MobileElement label_uploadVatCertificate;
 
     @iOSXCUITFindBy(accessibility = "UPLOAD VAT CERTIFICATE")
-    @AndroidFindBy(accessibility = "UPLOAD VAT CERTIFICATE")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPLOAD VAT CERTIFICATE']")
     MobileElement button_uploadVatCert;
 
     @iOSXCUITFindBy(accessibility = "VAT Reference Number")
-    @AndroidFindBy(accessibility = "VAT Reference Number")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='VAT Reference Number']/parent::android.view.ViewGroup/preceding-sibling::android.widget.EditText")
     MobileElement textBox_vatReferenceNum;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='My business is not eligible for VAT certificate'])[2]/XCUIElementTypeOther")
-    @AndroidFindBy(accessibility = "")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My business is not eligible for VAT certificate']/following-sibling::android.view.ViewGroup")
     MobileElement checkBox_notEligibleVatCert;
 
     @iOSXCUITFindBy(accessibility = "UPLOAD VAT EXEMPTION")
-    @AndroidFindBy(accessibility = "UPLOAD VAT EXEMPTION")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='UPLOAD VAT EXEMPTION']")
     MobileElement button_uploadVatExemption;
 
     @iOSXCUITFindBy(accessibility = "Please review and agree to our Terms & Conditions.")
-    @AndroidFindBy(accessibility = "Please review and agree to our Terms & Conditions.")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please review and agree to our Terms & Conditions.']")
     MobileElement label_termAndConditions;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='I agree to the User Terms & Conditions and Privacy Policy'])[2]/preceding-sibling::XCUIElementTypeOther")
-    @AndroidFindBy(xpath = "")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='I agree to the User']/parent::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup")
     MobileElement checkBox_agreeTerms;
 
     @iOSXCUITFindBy(accessibility = "undefined")
-    @AndroidFindBy(accessibility = "undefined")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement button_termContinue;
 
+    @AndroidFindBy(id = "android:id/date_picker_header_year")
+    MobileElement link_androidDatePickerYear;
+
+    @AndroidFindBy(id = "android:id/button1")
+    MobileElement button_androidDatePickerOk;
+
+    @iOSXCUITFindBy(accessibility = "Confirm")
+    MobileElement button_iosConfirmDate;
 
     public DocumentUploadScreen(MobileActions action) {
-        this.actions = action;
-        PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
+        try {
+            this.actions = action;
+            PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public boolean verifyDocumentUploadScreen(){
@@ -187,13 +198,32 @@ public class DocumentUploadScreen {
         selectDate(month, date, year);
     }
 
+    public void selectDate(String month, String date, String year)
+    {
+        if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+            selectDateForIos(month, date, year);
+        }
+        else if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
+            selectDateForAndroid(year);
+        }
+    }
 
-    public void selectDate(String month, String date, String year){
+
+    public void selectDateForIos(String month, String date, String year){
 
         actions.enterText(datePickerWheel.get(0),month);
         actions.enterText(datePickerWheel.get(1), date);
         actions.enterText(datePickerWheel.get(2), year);
-        actions.click(button_confirmDate);
+        actions.click(button_iosConfirmDate);
+
+    }
+
+    public void selectDateForAndroid(String year){
+
+        actions.click(link_androidDatePickerYear);
+        MobileElement yearLink = actions.getLocator("xpath-android://android.widget.TextView[@resource-id='android:id/text1' and @text='"+year+"']");
+        actions.click(yearLink);
+        actions.click(button_androidDatePickerOk);
 
     }
 

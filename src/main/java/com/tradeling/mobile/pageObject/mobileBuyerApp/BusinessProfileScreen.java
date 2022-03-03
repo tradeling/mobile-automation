@@ -17,11 +17,11 @@ public class BusinessProfileScreen extends Common {
     MobileElement textBox_firstName;
 
     @iOSXCUITFindBy(accessibility = "Last Name* account_info_last_name")
-    @AndroidFindBy(accessibility = "account_info_first_name")
+    @AndroidFindBy(accessibility = "account_info_last_name")
     MobileElement textBox_lastName;
 
     @iOSXCUITFindBy(accessibility = "Department*")
-    @AndroidFindBy(accessibility = "Department*")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Department*']")
     MobileElement dropdown_department;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='Which option best describes your department? CLOSE'])[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeTextField")
@@ -29,7 +29,7 @@ public class BusinessProfileScreen extends Common {
     MobileElement textBox_searchDepartment;
 
     @iOSXCUITFindBy(accessibility = "Industry*")
-    @AndroidFindBy(accessibility = "Industry*")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Industry*']")
     MobileElement dropdown_industry;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='Which industry best describes your business? CLOSE'])[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeTextField")
@@ -37,7 +37,7 @@ public class BusinessProfileScreen extends Common {
     MobileElement textBox_searchIndustry;
 
     @iOSXCUITFindBy(accessibility = "Size of the business*")
-    @AndroidFindBy(accessibility = "Size of the business*")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Size of the business*']")
     MobileElement dropdown_businessSize;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='What size is your business? CLOSE'])[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeTextField")
@@ -49,7 +49,7 @@ public class BusinessProfileScreen extends Common {
     MobileElement textBox_phoneNumber;
 
     @iOSXCUITFindBy(accessibility = "REGISTER")
-    @AndroidFindBy(accessibility = "REGISTER")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='REGISTER']")
     MobileElement button_register;
 
     @iOSXCUITFindBy(accessibility = "+971")
@@ -75,13 +75,14 @@ public class BusinessProfileScreen extends Common {
     public void addCustomerName(String firstName, String lastName){
         actions.enterText(textBox_firstName, firstName);
         actions.enterText(textBox_lastName, lastName);
+        actions.hideKeyboard();
     }
 
     public void addBusinessDetails(String department, String industry, String businessSize){
 
-        selectDropdown(dropdown_department, textBox_searchDepartment, department, "xpath-ios:(//XCUIElementTypeOther[@name='"+department+"'])[2]", "xpath-android:" );
-        selectDropdown(dropdown_industry, textBox_searchIndustry, industry, "xpath-ios:(//XCUIElementTypeOther[@name='"+industry+"'])[2]", "xpath-android:" );
-        selectDropdown(dropdown_businessSize, textBox_searchBusinessSize, businessSize, "xpath-ios:(//XCUIElementTypeOther[@name='"+businessSize+"'])[2]", "xpath-android:" );
+        selectDropdown(dropdown_department, textBox_searchDepartment, department, "xpath-ios:(//XCUIElementTypeOther[@name='"+department+"'])[2]", "xpath-android://android.widget.TextView[@text='"+department+"']" );
+        selectDropdown(dropdown_industry, textBox_searchIndustry, industry, "xpath-ios:(//XCUIElementTypeOther[@name='"+industry+"'])[2]", "xpath-android://android.widget.TextView[@text='"+industry+"']" );
+        selectDropdown(dropdown_businessSize, textBox_searchBusinessSize, businessSize, "xpath-ios:(//XCUIElementTypeOther[@name='"+businessSize+"'])[2]", "xpath-android://android.widget.TextView[@text='"+businessSize+"']" );
     }
 
     public void addPhoneNumber(String countryCode,String phoneNumber){
