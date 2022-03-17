@@ -23,7 +23,7 @@ public class DocumentUploadScreen {
     @AndroidFindBy(accessibility = "auth_login_button")
     MobileElement button_uploadLater;
 
-    @iOSXCUITFindBy(accessibility = "auth_login_button")
+    @iOSXCUITFindBy(iOSNsPredicate = "label == 'UPLOAD LATER'")
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@resource-id='auth_login_button'])[1]")
     MobileElement button_uploadNow;
 
@@ -146,6 +146,11 @@ public class DocumentUploadScreen {
             Reporting.getLogger().logFail("'Upload Trade License' screen not found");
         }
         return flag;
+    }
+
+    public void navigateTopUploadLater()
+    {
+        actions.click(button_uploadLater);
     }
 
     public void uploadTradeLicenseAndExpiry(String month, String date, String year){

@@ -7,7 +7,7 @@
         <classes>
             <class name="com.tradeling.mobile.buyerApp.tests.Registration" >
                 <methods>
-                    <include name="register_new_buyer"/>
+                    <include name="register_new_buyer_without_document"/>
                 </methods>
             </class>
 

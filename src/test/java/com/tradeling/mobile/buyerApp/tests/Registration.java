@@ -70,6 +70,51 @@ public class Registration extends EnvironmentSetup {
 
     }
 
+    @Test
+    private void register_new_buyer_without_document(){
+
+        launchScreen = new LaunchScreen(actions.get());
+        if(platform.get().equalsIgnoreCase("ios")) {
+            launchScreen.acceptNotificationAlert(false);
+        }
+        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
+
+        loginScreen = new LoginScreen(actions.get());
+        loginScreen.navigateToRegistration();
+
+        BuyerRegistrationData buyerData = new BuyerRegistrationData(Constants.USERTYPE_BUYER, "United Arab Emirates");
+
+        registrationScreen = new RegistrationScreen(actions.get());
+        Assert.assertTrue(registrationScreen.verifyUserLandedRegistrationScreen());
+        registrationScreen.addUserTypeAndCompanyName(buyerData.getUserType(), buyerData.getCompanyName());
+        registrationScreen.selectCountryOfOperation(buyerData.getCountryOfOperations());
+        Assert.assertTrue(registrationScreen.submitAndNavigateToAddCredentials());
+        registrationScreen.addLoginCredentials(buyerData.getEmail(), buyerData.getPassword());
+
+        businessProfileScreen = new BusinessProfileScreen(actions.get());
+        businessProfileScreen.addCustomerName(buyerData.getFirstName(), buyerData.getLastName());
+        businessProfileScreen.addBusinessDetails(buyerData.getDepartment(), buyerData.getIndustry(), buyerData.getBusinessSize());
+        businessProfileScreen.addPhoneNumber(buyerData.getCountryCode(), buyerData.getPhone());
+        businessProfileScreen.submitBusinessProfile();
+
+        otpScreen = new OTPScreen(actions.get());
+        Assert.assertTrue(otpScreen.verifyOtpScreen());
+        otpScreen.inputOtpAndSubmit(Constants.OTP);
+
+        documentUploadScreen = new DocumentUploadScreen(actions.get());
+        Assert.assertTrue(documentUploadScreen.verifyDocumentUploadScreen());
+        documentUploadScreen.navigateTopUploadLater();
+
+        Assert.assertTrue(documentUploadScreen.verifyTermsAndConditionScreen());
+        documentUploadScreen.acceptTermsAndCondition();
+
+        homeScreen = new HomeScreen(actions.get());
+        homeScreen.navigateToAccountScreen();
+        accountScreen = new AccountScreen(actions.get());
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName()));
+
+    }
+
 
 
 }
