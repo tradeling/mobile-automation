@@ -22,7 +22,7 @@ public class LoginScreen {
     MobileElement input_loginPass;
 
     @iOSXCUITFindBy(accessibility = "auth_login_button")
-    @AndroidFindBy(accessibility = "LOG IN")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='auth_login_button']")
     MobileElement btn_login;
 
     @iOSXCUITFindBy(accessibility = "auth_continue_as_guest")

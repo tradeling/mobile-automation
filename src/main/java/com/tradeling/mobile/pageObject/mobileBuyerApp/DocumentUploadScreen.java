@@ -19,11 +19,11 @@ public class DocumentUploadScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Document upload']")
     MobileElement label_documentUpload;
 
-    @iOSXCUITFindBy(accessibility = "UPLOAD LATER")
-    @AndroidFindBy(accessibility = "auth_login_button")
+    @iOSXCUITFindBy(iOSNsPredicate = "label == 'UPLOAD LATER'")
+    @AndroidFindBy(xpath = "(//android.view.ViewGroup[@resource-id='auth_login_button'])[2]")
     MobileElement button_uploadLater;
 
-    @iOSXCUITFindBy(iOSNsPredicate = "label == 'UPLOAD LATER'")
+    @iOSXCUITFindBy(accessibility = "auth_login_button")
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@resource-id='auth_login_button'])[1]")
     MobileElement button_uploadNow;
 
@@ -111,6 +111,9 @@ public class DocumentUploadScreen {
     @iOSXCUITFindBy(accessibility = "Confirm")
     MobileElement button_iosConfirmDate;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='company_profile_edit_flow']")
+    MobileElement button_submitDocUpload;
+
     public DocumentUploadScreen(MobileActions action) {
         try {
             this.actions = action;
@@ -135,8 +138,12 @@ public class DocumentUploadScreen {
 
     public boolean navigateToUploadNow()
     {
-        boolean flag = false;
         actions.click(button_uploadNow);
+        return verifyUploadTradeLicenseScreen();
+    }
+
+    public boolean verifyUploadTradeLicenseScreen(){
+        boolean flag = false;
         if(actions.waitForElementToDisplay(label_uploadTradeLicense)){
             flag = true;
             Reporting.getLogger().logPass("Landed on Trade License upload screen");
@@ -245,6 +252,10 @@ public class DocumentUploadScreen {
             actions.click(button_uploadVatExemption);
             selectDocFromGallery();
         }
+
+    }
+
+    public void submitAndMoveNextFromVatUpload(){
         actions.waitForElementIsEnabled(button_nextDocUpload);
         actions.click(button_nextDocUpload);
     }
@@ -264,5 +275,9 @@ public class DocumentUploadScreen {
     public void acceptTermsAndCondition(){
         actions.click(checkBox_agreeTerms);
         actions.click(button_termContinue);
+    }
+
+    public void submitDocumentUpload(){
+        actions.click(button_submitDocUpload);
     }
 }

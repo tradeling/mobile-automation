@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite"  thread-count="1">
+
+    <test name="androidTest">
+<!--        <parameter name="androidAppPath" value=""/>-->
+<!--        <parameter name="appName" value=""/>-->
+<!--        <parameter name="appActivity" value=""/>-->
+<!--        <parameter name="appPackage" value=""/>-->
+        <parameter name="deviceType" value="android" />
+        <classes>
+            <class name="com.tradeling.mobile.buyerApp.tests.Registration" >
+                <methods>
+<!--                    <include name="register_new_buyer"/>-->
+<!--                    <include name="register_new_buyer_without_document"/>-->
+                    <include name="verify_user_can_upload_document_from_accounts_screen"/>
+
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+<!--    <test name="iosTest">-->
+<!--    <parameter name="iosAppPath" value=""/>-->
+<!--    <parameter name="appName" value=""/>-->
+<!--    <parameter name="bundleId" value=""/>-->
+<!--        <parameter name="deviceType" value="ios" />-->
+<!--        <classes>-->
+<!--            <class name="com.tradeling.mobile.buyerApp.tests.Registration" >-->
+<!--                <methods>-->
+<!--                    <include name="register_new_buyer"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

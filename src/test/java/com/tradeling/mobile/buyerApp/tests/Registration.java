@@ -1,11 +1,12 @@
 package com.tradeling.mobile.buyerApp.tests;
 
-import com.tradeling.data.BuyerRegistrationData;
-import com.tradeling.data.Constants;
+import com.tradeling.apis.requests.buyerApp.RegistrationRequests;
+import com.tradeling.data.buyerApp.BuyerRegistrationData;
+import com.tradeling.data.buyerApp.Constants;
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.*;
+import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Registration extends EnvironmentSetup {
@@ -18,8 +19,9 @@ public class Registration extends EnvironmentSetup {
     DocumentUploadScreen documentUploadScreen;
     OTPScreen otpScreen;
     AccountScreen accountScreen;
+    CompanyProfileScreen companyProfileScreen;
 
-
+    // QTM-6519
     @Test
     private void register_new_buyer(){
 
@@ -59,6 +61,7 @@ public class Registration extends EnvironmentSetup {
         documentUploadScreen.uploadIdentityAndExpiry(buyerData.getIdExpiryMonth(), buyerData.getIdExpiryDate(), buyerData.getIdExpiryYear());
         Assert.assertTrue(documentUploadScreen.navigateToUploadVatCertificate());
         documentUploadScreen.uploadVatCertificate(false);
+        documentUploadScreen.submitAndMoveNextFromVatUpload();
 
         Assert.assertTrue(documentUploadScreen.verifyTermsAndConditionScreen());
         documentUploadScreen.acceptTermsAndCondition();
@@ -66,10 +69,11 @@ public class Registration extends EnvironmentSetup {
         homeScreen = new HomeScreen(actions.get());
         homeScreen.navigateToAccountScreen();
         accountScreen = new AccountScreen(actions.get());
-        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName()));
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName(), true));
 
     }
 
+    //QTM-6520
     @Test
     private void register_new_buyer_without_document(){
 
@@ -111,10 +115,43 @@ public class Registration extends EnvironmentSetup {
         homeScreen = new HomeScreen(actions.get());
         homeScreen.navigateToAccountScreen();
         accountScreen = new AccountScreen(actions.get());
-        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName()));
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerData.getCompanyName(), false));
 
     }
 
+    //QTM-6521
+    @Test
+    private void verify_user_can_upload_document_from_accounts_screen(){
+        RegistrationRequests registrationRequests = new RegistrationRequests();
+        BuyerRegistrationData buyerRegistrationData = new BuyerRegistrationData("buyer","");
+        registrationRequests.registerBuyer(buyerRegistrationData);
+        Response response = registrationRequests.verifyOtpForUser(buyerRegistrationData.getEmail());
+        launchScreen = new LaunchScreen(actions.get());
+        if(platform.get().equalsIgnoreCase("ios")) {
+            launchScreen.acceptNotificationAlert(false);
+        }
+        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
 
+        loginScreen = new LoginScreen(actions.get());
+        loginScreen.enterUserAndPass(buyerRegistrationData.getEmail(), buyerRegistrationData.getPassword());
+        homeScreen = new HomeScreen(actions.get());
+        homeScreen.navigateToAccountScreen();
+        accountScreen = new AccountScreen(actions.get());
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerRegistrationData.getCompanyName(), false));
+        accountScreen.navigateToDocumentUpload();
+        companyProfileScreen = new CompanyProfileScreen(actions.get());
+        Assert.assertTrue(companyProfileScreen.verifyCompanyProfileScreen());
+        companyProfileScreen.navigateToUploadTradeLicense();
+        documentUploadScreen = new DocumentUploadScreen(actions.get());
+        Assert.assertTrue(documentUploadScreen.verifyUploadTradeLicenseScreen());
+        documentUploadScreen.uploadTradeLicenseAndExpiry(buyerRegistrationData.getTradeLicenseExpiryMonth(), buyerRegistrationData.getTradeLicenseExpiryDate(), buyerRegistrationData.getTradeLicenseExpiryYear());
+        documentUploadScreen.submitDocumentUpload();
+        companyProfileScreen.navigateToUploadVatCertificate();
+        documentUploadScreen.uploadVatCertificate(false);
+        documentUploadScreen.submitDocumentUpload();
+        Assert.assertTrue(companyProfileScreen.verifyDocumentUploaded());
+        companyProfileScreen.navigateBack();
+        Assert.assertTrue(accountScreen.verifyUserRegistered(buyerRegistrationData.getCompanyName(), true));
+    }
 
 }
