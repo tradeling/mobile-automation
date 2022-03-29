@@ -64,6 +64,20 @@ You may follow this link for more step by step details for the setup https://www
 - Each locator should be annotated with `@iOSXCUITFindBy` and `@AndroidFindBy`
 - `actions` a thread safe object of `MobileActions` is used to access the Mobile Events in the page objects
 
+## Tradeling App and Edukaan Configuration
+
+- Repository is configured to execute Edukaan and Tradeling App scripts
+- There are two testng files maintained in the repository one for edukaan(edukaan-testng.xml) and one for tradeling app(buyerApp-testng.xml)
+- There are two profile created in the pom.xml one for Edukaan and another for Tradeling app which contains the suite for execution(i.e testng xml) and the application releated details(like app name, app package, bunde id etc.)
+- The packages for edukaan and buyer app has been segrgated for page objects or rest capabilities or the test data/resources
+
+<img width="1113" alt="Screen Shot 2022-03-29 at 11 55 03 AM" src="https://user-images.githubusercontent.com/17287880/160563430-dd4e66d4-3852-4d2d-813a-20243b7a2aff.png">
+
+## Device Details
+
+- All the details for the target devices for execution are provided in file 'src/main/resources/setup/deviceDetails.properties'
+- All the details for emote execution that is browser stack is provided in file 'src/main/resources/setup/browserStack.properties'
+
 ## Test Cases
 
 ### Test Class
@@ -77,3 +91,14 @@ You may follow this link for more step by step details for the setup https://www
 - For test case management we are using TestNG
 - Define the test cases inside the `test` tag of testng
 - Each test tag of testng will have it's own driver and require platform to be passed throught attribute `deviceType`
+
+
+## Execution of Test scripts
+
+The required input to run the scripts:
+- The profile i.e buyerApp or edukaan. Pass the value with arguement '-PbuyerApp or -Pedukaan'
+- The environment for execution local or device farm. Pass the value with argument '-Denvironment=local or -Denvironment=remote'
+- The appPath is the path of the ios and anroid build in the execution server. Pathe value with argument '-DappPath=pathtoBuilds'. This argument is not required if the execution is remote. Aslo if the app is preinstalled in the devices this argument can be skipped.
+
+Sample Command
+`mvn test -PbuyerApp -Denvironment=local -DappPath={localPath}`

@@ -1,0 +1,44 @@
+{
+  "certificates": [
+    {
+      "type": "tradeHolderId",
+      "attachments": [
+        {
+          "id": "5ee8c5a0c0f476001bf85d10",
+          "url": "e72bea77bac9a8a352c0001faa84fe49.jpg",
+          "name": "https://s3.eu-west-1.amazonaws.com/backend-stage-media-storage-origin/module-catalog-pim/.tmp/ee8c0651c4aa6001b39d0ef/buyer-company-setting/9ca1380f07fd65ad9c3c2c0d607ce7aa.jpg"
+        }
+      ],
+      "metadata": {
+        "expiry": "02-04-2025"
+      }
+    },
+    {
+      "type": "tradeLicense",
+      "attachments": [
+        {
+          "id": "5ee8c5bac0f476001bf85d11",
+          "url": "8cf6cc4f616bd8637ddebf33cdb3307c.jpg",
+          "name": "https://s3.eu-west-1.amazonaws.com/backend-stage-media-storage-origin/module-catalog-pim/.tmp/ee8c0651c4aa6001b39d0ef/buyer-company-setting/5f58ecc9617916de46b821350270c4ba.jpg"
+        }
+      ],
+      "metadata": {
+        "expiry": "01-07-2025"
+      }
+    },
+    {
+      "type": "vatCertificate",
+      "attachments": [
+        {
+          "id": "5ee8c5cd6cfe94001c03793b",
+          "url": "e4f1d458e1fb7a10146036beaf7ec8cc.jpg",
+          "name": "https://s3.eu-west-1.amazonaws.com/backend-stage-media-storage-origin/module-catalog-pim/.tmp/ee8c0651c4aa6001b39d0ef/buyer-company-setting/bec12ed7f84a2955a68098bacd325402.jpg"
+        }
+      ],
+      "metadata": {
+        "id": "1234567890",
+        "vatNotAvailable": false
+      }
+    }
+  ]
+}

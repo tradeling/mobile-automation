@@ -21,16 +21,17 @@ public class IosDriver extends  Driver{
         DesiredCapabilities caps = new DesiredCapabilities();
         try {
             //condition to handle if for launching directly the app or using apk
-            String appPath = propertyFileHandle.getPropertyForIosConfig("appPath");
-            String appName = propertyFileHandle.getPropertyForIosConfig("appName");
+            String appPath = System.getProperty("appPath");
+            String appName = System.getProperty("iosApp");
             if(!appPath.isEmpty()){
                 caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
-            caps.setCapability(MobileCapabilityType.DEVICE_NAME, propertyFileHandle.getPropertyForIosConfig("deviceName"));
-            caps.setCapability(MobileCapabilityType.UDID, propertyFileHandle.getPropertyForIosConfig("deviceId"));
+
+            caps.setCapability(MobileCapabilityType.DEVICE_NAME, propertyFileHandle.getPropertyForDeviceDetails("ios_deviceName"));
+            caps.setCapability(MobileCapabilityType.UDID, propertyFileHandle.getPropertyForDeviceDetails("ios_deviceId"));
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
             caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-            caps.setCapability("bundleId", propertyFileHandle.getPropertyForIosConfig("bundleId"));
+            caps.setCapability("bundleId", System.getProperty("bundleId"));
             caps.setCapability(MobileCapabilityType.NO_RESET, "false");
 
             driver = new IOSDriver<>(new URL(

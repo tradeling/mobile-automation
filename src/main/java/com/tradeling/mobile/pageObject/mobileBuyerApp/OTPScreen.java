@@ -23,7 +23,7 @@ public class OTPScreen {
 
 //    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='VERIFY']/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[`label == 'VERIFY'`][1]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[1]")
-    @AndroidFindBy(xpath = "//android.widget.EditText/following-sibling::android.view.ViewGroup")
+    @AndroidFindBy(xpath = "(//android.widget.EditText/following-sibling::android.view.ViewGroup)[1]")
     MobileElement textBox_otp;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='VERIFY']/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]")
@@ -61,10 +61,7 @@ public class OTPScreen {
 
     public boolean verifyOtpScreen(){
         boolean flag = false;
-        if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
-            actions.hideKeyboard();
-        }
-        if(actions.waitForElementToDisplay(label_verifyAccount)){
+        if(actions.waitForElementToDisplay(button_verify, 5)){
             flag = true;
             Reporting.getLogger().logPass("Successfully landed on OTP screen");
         }
@@ -75,9 +72,6 @@ public class OTPScreen {
     }
 
     public void inputOtpAndSubmit(String otp){
-        if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
-            actions.click(textBox_otp);
-        }
         actions.getDriver().getKeyboard().sendKeys(otp);
         actions.click(button_verify);
     }

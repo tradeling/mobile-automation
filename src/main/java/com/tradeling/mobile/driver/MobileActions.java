@@ -105,7 +105,7 @@ public class MobileActions {
 
     public void waitFor(){
         try {
-            getDriver().wait(2000);
+            Thread.sleep(500);
         }
         catch (Exception e)
         {
@@ -154,6 +154,22 @@ public class MobileActions {
 
     }
 
+
+    public boolean waitForElementToDisplay(MobileElement ele, int timeout) {
+
+        try{
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
+            wait.until(ExpectedConditions.visibilityOf(ele));
+            return ele.isDisplayed();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Element " + Utilities.getElementNameString(ele) + " is not visible/enabled", e);
+            return false;
+        }
+
+    }
+
+
     public boolean waitForElementIsClickable(MobileElement ele) {
 
         try {
@@ -200,6 +216,7 @@ public class MobileActions {
                 default:
                     return null;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             Reporting.getLogger().logFail("Element with locator '" + locator + "' is not found", e);
