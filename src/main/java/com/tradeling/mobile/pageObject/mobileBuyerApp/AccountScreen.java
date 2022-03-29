@@ -24,6 +24,13 @@ public class AccountScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Pending Verification']")
     MobileElement label_pendingVerification;
 
+    @iOSXCUITFindBy(accessibility = "Upload your business documents")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Upload your business documents']")
+    MobileElement label_uploadBusinessDocument;
+
+    @iOSXCUITFindBy(accessibility = "undefined")
+    @AndroidFindBy(xpath ="//android.widget.TextView[@text='UPLOAD DOCUMENTS']")
+    MobileElement button_uploadDocument;
 
     public AccountScreen(MobileActions action) {
         this.actions = action;
@@ -42,9 +49,21 @@ public class AccountScreen {
 
 
 
-    public boolean verifyUserRegistered(String companyName){
-        boolean flag = false;
+    public boolean verifyUserRegistered(String companyName, boolean isDocUploaded){
+        if(isDocUploaded)
+        {
+            return verifyUserRegisteredWithDoc();
+        }
+        else
+        {
+            return verifyUserRegisteredWithoutDoc();
+        }
 
+
+    }
+
+    public boolean verifyUserRegisteredWithDoc(){
+        boolean flag = false;
         if(actions.waitForElementToDisplay(label_pendingVerification)){
             flag = true;
             Reporting.getLogger().logPass("Company/User successfully registered");
@@ -53,6 +72,21 @@ public class AccountScreen {
             Reporting.getLogger().logFail("Company/User registration failed");
         }
         return flag;
+    }
 
+    public boolean verifyUserRegisteredWithoutDoc(){
+        boolean flag = false;
+        if(actions.waitForElementToDisplay(label_uploadBusinessDocument)){
+            flag = true;
+            Reporting.getLogger().logPass("Company/User successfully registered");
+        }
+        else {
+            Reporting.getLogger().logFail("Company/User registration failed");
+        }
+        return flag;
+    }
+
+    public void navigateToDocumentUpload(){
+        actions.click(button_uploadDocument);
     }
 }

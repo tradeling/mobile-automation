@@ -21,8 +21,15 @@ public class Common {
     public void selectDropdown(MobileElement dropdown, MobileElement searchBox, String valueToSearch, String locatorIos, String locatorAndroid){
         actions.click(dropdown);
         actions.enterText(searchBox,valueToSearch);
+        try {
+            Thread.sleep(500);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         actions.hideKeyboard();
-        actions.click(getElement(locatorIos, locatorAndroid));
+        MobileElement ele = getElement(locatorIos, locatorAndroid);
+        actions.click(ele);
     }
 
     public MobileElement getElement(String locatorIos, String locatorAndroid)

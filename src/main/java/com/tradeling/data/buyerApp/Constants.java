@@ -1,4 +1,4 @@
-package com.tradeling.data;
+package com.tradeling.data.buyerApp;
 
 import java.util.Arrays;
 import java.util.List;

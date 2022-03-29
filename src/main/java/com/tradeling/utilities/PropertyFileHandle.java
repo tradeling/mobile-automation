@@ -34,18 +34,12 @@ public class PropertyFileHandle {
         return  getPropertyValue(key,"src/main/resources/setup","browserStack.properties");
     }
 
-    /*
-    This method load config property file for android and returns the value of the key
-     */
-    public String getPropertyForAndroidConfig(String key){
-        return  getPropertyValue(key,"src/main/resources/setup","androidDriver.properties");
-    }
 
     /*
-    This method load config property file for ios and returns the value of the key
+    This method load config property file for android and ios device details and returns the value of the key
      */
-    public String getPropertyForIosConfig(String key){
-        return  getPropertyValue(key,"src/main/resources/setup","iosDriver.properties");
+    public String getPropertyForDeviceDetails(String key){
+        return  getPropertyValue(key,"src/main/resources/setup","deviceDetails.properties");
     }
 
 }
