@@ -101,4 +101,4 @@ The required input to run the scripts:
 - The appPath is the path of the ios and anroid build in the execution server. Pathe value with argument '-DappPath=pathtoBuilds'. This argument is not required if the execution is remote. Aslo if the app is preinstalled in the devices this argument can be skipped.
 
 Sample Command
-`mvn test -PbuyerApp -Denvironment=local -DappPath=/Users/{user}/Documents/Workspace/builds`
+`mvn test -PbuyerApp -Denvironment=local -DappPath={localPath}`
