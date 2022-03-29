@@ -5,7 +5,10 @@
     <test name="Test">
         <parameter name="deviceType" value="android" />
         <classes>
-            <class name="com.tradeling.mobile.buyerApp.tests.Registration" >
+            <class name="com.tradeling.mobile.edukaanApp.test.Registration" >
+                <methods>
+                    <include name="registerAsANewUser"/>
+                </methods>
             </class>
 
         </classes>
@@ -13,7 +16,10 @@
     <test name="Test1">
         <parameter name="deviceType" value="ios" />
         <classes>
-            <class name="com.tradeling.mobile.buyerApp.tests.Registration" >
+            <class name="com.tradeling.mobile.edukaanApp.test.Registration" >
+                <methods>
+                    <include name="registerAsANewUser"/>
+                </methods>
             </class>
 
         </classes>

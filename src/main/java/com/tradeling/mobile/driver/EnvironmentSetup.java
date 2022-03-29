@@ -21,7 +21,7 @@ public class EnvironmentSetup {
         reporting = new Reporting();
         reporting.initiateReport();
         if(env.equalsIgnoreCase("local")) {
-            mobDriver.appiumInit();
+//            mobDriver.appiumInit();
         }
     }
 
