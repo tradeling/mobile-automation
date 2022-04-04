@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class PropertyFileHandle {
 
-    Properties property = new Properties();
+    static Properties property = new Properties();
 
-    public String getPropertyValue(String key, String filePath, String fileName){
+    public static String getPropertyValue(String key, String filePath, String fileName){
         String value = "";
         try{
             property.load(new FileReader(new File(filePath+"/"+fileName).getAbsolutePath()));

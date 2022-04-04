@@ -1,6 +1,7 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
 import com.tradeling.mobile.driver.MobileActions;
+import com.tradeling.reporting.Reporting;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -60,6 +61,10 @@ public class BusinessProfileScreen extends Common {
     @AndroidFindBy(accessibility = "search_country")
     MobileElement textBox_searchCountryCode;
 
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label == \"User with the provided email address already exists.\"`]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='User with the provided email address already exists.']")
+    MobileElement label_existingUserError;
+
 
     public BusinessProfileScreen(MobileActions action) {
         super(action);
@@ -95,6 +100,23 @@ public class BusinessProfileScreen extends Common {
 
     public void submitBusinessProfile(){
         actions.click(button_register);
+    }
+
+    public boolean verifyExistingUserError(){
+        boolean flag = false;
+        try {
+            if (actions.waitForElementToDisplay(label_existingUserError)) {
+                flag = true;
+                Reporting.getLogger().logPass("The error message '" + actions.getText(label_existingUserError) + "' was displayed");
+            } else {
+                Reporting.getLogger().logFail("Existing user error message was not displayed");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Exception while verifying existing user error", e);
+        }
+        return flag;
     }
 
 
