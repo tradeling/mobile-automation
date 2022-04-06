@@ -1,5 +1,7 @@
 package com.tradeling.mobile.driver;
 
+import com.tradeling.apis.requests.buyerApp.PreRequisites;
+import com.tradeling.apis.utility.TestDataHandler;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.PropertyFileHandle;
 import org.testng.annotations.*;
@@ -22,6 +24,11 @@ public class EnvironmentSetup {
         reporting.initiateReport();
         if(env.equalsIgnoreCase("local")) {
             mobDriver.appiumInit();
+        }
+        if(System.getProperty("appName").equalsIgnoreCase("buyerApp")){
+            PreRequisites preRequisites = new PreRequisites();
+            preRequisites.createUnverifiedBuyer();
+            TestDataHandler.writeDataToPropertiesBuyerApp();
         }
     }
 

@@ -12,6 +12,7 @@
         <profile>
             <id>buyerApp</id>
             <properties>
+                <appName>buyerApp</appName>
                 <testNGSuite>buyerApp-testng.xml</testNGSuite>
                 <iosApp>mobilebuyerapp.app</iosApp>
                 <bundleId>com.tradeling.iosmobilebuyerapp</bundleId>
@@ -44,11 +45,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <forkMode>never</forkMode>
                     <suiteXmlFiles>
                         <suiteXmlFile>${testNGSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <environment>local</environment>
+                        <appName>${appName}</appName>
                         <iosApp>${iosApp}</iosApp>
                         <bundleId>${bundleId}</bundleId>
                         <androidApp>${androidApp}</androidApp>

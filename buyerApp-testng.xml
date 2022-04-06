@@ -10,6 +10,7 @@
 
         </classes>
     </test>
+
     <test name="iosTest">
         <parameter name="deviceType" value="ios" />
         <classes>

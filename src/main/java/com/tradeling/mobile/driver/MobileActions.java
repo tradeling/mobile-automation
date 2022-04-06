@@ -17,7 +17,7 @@ public class MobileActions {
 
     Duration timeOutDuration = Duration.of(200, ChronoUnit.SECONDS);
     Duration pollingDuration = Duration.of(250, ChronoUnit.MILLIS);
-    public static long timeout = 120;
+    public static long timeout = 60;
 
     static AppiumDriver<MobileElement> driver;
 
@@ -54,7 +54,14 @@ public class MobileActions {
     public void enterText(MobileElement ele, String text) {
         try {
             if(waitForElementIsEnabled(ele)) {
-                ele.setValue(text);
+                waitFor();
+                if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
+                    ele.setValue(text);
+                }
+                else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+                    ele.sendKeys(text);
+                    hideKeyboard();
+                }
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
             }
         } catch (Exception e) {
@@ -129,7 +136,7 @@ public class MobileActions {
     public boolean waitForElementToDisplay(MobileElement ele) {
 
         try{
-            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
             wait.until(ExpectedConditions.visibilityOf(ele));
             return ele.isDisplayed();
         } catch (Exception e) {
@@ -143,7 +150,7 @@ public class MobileActions {
     public boolean waitForElementIsEnabled(MobileElement ele) {
 
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
             wait.until(ExpectedConditions.visibilityOf(ele));
             return ele.isEnabled();
         } catch (Exception e) {
@@ -174,7 +181,7 @@ public class MobileActions {
 
         try {
 
-            WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
             wait.until(ExpectedConditions.elementToBeClickable(ele));
             return ele.isEnabled();
         } catch (Exception e) {
