@@ -60,7 +60,6 @@ public class MobileActions {
                 }
                 else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
                     ele.sendKeys(text);
-                    hideKeyboard();
                 }
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
             }
