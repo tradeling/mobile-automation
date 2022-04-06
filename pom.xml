@@ -12,6 +12,7 @@
         <profile>
             <id>buyerApp</id>
             <properties>
+                <appName>buyerApp</appName>
                 <testNGSuite>buyerApp-testng.xml</testNGSuite>
                 <iosApp>mobilebuyerapp.app</iosApp>
                 <bundleId>com.tradeling.iosmobilebuyerapp</bundleId>
@@ -55,6 +56,7 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <environment>local</environment>
+                        <appName>${appName}</appName>
                         <iosApp>${iosApp}</iosApp>
                         <bundleId>${bundleId}</bundleId>
                         <androidApp>${androidApp}</androidApp>

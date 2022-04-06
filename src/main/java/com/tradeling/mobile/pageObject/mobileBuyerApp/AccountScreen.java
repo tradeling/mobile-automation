@@ -32,6 +32,10 @@ public class AccountScreen {
     @AndroidFindBy(xpath ="//android.widget.TextView[@text='UPLOAD DOCUMENTS']")
     MobileElement button_uploadDocument;
 
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[`label == \"Email & Password\"`][3]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email & Password']")
+    MobileElement link_emailPassword;
+
     public AccountScreen(MobileActions action) {
         this.actions = action;
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -88,5 +92,9 @@ public class AccountScreen {
 
     public void navigateToDocumentUpload(){
         actions.click(button_uploadDocument);
+    }
+
+    public void navigateToEmailPassword(){
+        actions.click(link_emailPassword);
     }
 }

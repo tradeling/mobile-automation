@@ -1,6 +1,7 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
 import com.tradeling.mobile.driver.MobileActions;
+import com.tradeling.reporting.Reporting;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,6 +34,10 @@ public class LoginScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='REGISTER']")
     MobileElement link_registration;
 
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label == \"Wrong email or password\"`]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wrong email or password']")
+    MobileElement label_invalidCredentials;
+
     public LoginScreen(MobileActions action) {
         this.actions = action;
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -48,5 +53,20 @@ public class LoginScreen {
 
     public void navigateToRegistration(){
         actions.click(link_registration);
+    }
+
+
+    public boolean verifyInvalidLoginError(){
+        boolean flag = false;
+        try{
+            if(actions.waitForElementToDisplay(label_invalidCredentials)){
+                flag = true;
+                Reporting.getLogger().logPass("The invalid credentials message '"+ actions.getText(label_invalidCredentials) +"' was displayed");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

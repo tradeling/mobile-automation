@@ -1,10 +1,12 @@
 package com.tradeling.mobile.buyerApp.tests;
 
 import com.tradeling.apis.requests.buyerApp.RegistrationRequests;
+import com.tradeling.apis.utility.TestDataHandler;
 import com.tradeling.data.buyerApp.BuyerRegistrationData;
 import com.tradeling.data.buyerApp.Constants;
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.*;
+import com.tradeling.utilities.PropertyFileHandle;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -152,6 +154,41 @@ public class Registration extends EnvironmentSetup {
         Assert.assertTrue(companyProfileScreen.verifyDocumentUploaded());
         companyProfileScreen.navigateBack();
         Assert.assertTrue(accountScreen.verifyUserRegistered(buyerRegistrationData.getCompanyName(), true));
+    }
+
+    //QTM - 6522
+    @Test
+    private void verify_already_registered_user_cannot_register(){
+        String username = PropertyFileHandle.getPropertyValue("unverifiedBuyerEmail", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+        String password = PropertyFileHandle.getPropertyValue("unverifiedBuyerPassword", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+
+        launchScreen = new LaunchScreen(actions.get());
+        if(platform.get().equalsIgnoreCase("ios")) {
+            launchScreen.acceptNotificationAlert(false);
+        }
+        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
+
+        loginScreen = new LoginScreen(actions.get());
+        loginScreen.navigateToRegistration();
+
+        BuyerRegistrationData buyerData = new BuyerRegistrationData(Constants.USERTYPE_BUYER, "United Arab Emirates");
+
+        registrationScreen = new RegistrationScreen(actions.get());
+        Assert.assertTrue(registrationScreen.verifyUserLandedRegistrationScreen());
+        registrationScreen.addUserTypeAndCompanyName(buyerData.getUserType(), buyerData.getCompanyName());
+        registrationScreen.selectCountryOfOperation(buyerData.getCountryOfOperations());
+        Assert.assertTrue(registrationScreen.submitAndNavigateToAddCredentials());
+        registrationScreen.addLoginCredentials(username, password);
+
+        businessProfileScreen = new BusinessProfileScreen(actions.get());
+        businessProfileScreen.addCustomerName(buyerData.getFirstName(), buyerData.getLastName());
+        businessProfileScreen.addBusinessDetails(buyerData.getDepartment(), buyerData.getIndustry(), buyerData.getBusinessSize());
+        businessProfileScreen.addPhoneNumber(buyerData.getCountryCode(), buyerData.getPhone());
+        businessProfileScreen.submitBusinessProfile();
+        Assert.assertTrue(businessProfileScreen.verifyExistingUserError());
+
+
+
     }
 
 }
