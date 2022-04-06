@@ -10,15 +10,15 @@ import org.openqa.selenium.support.PageFactory;
 public class ProfileScreen {
     MobileActions actions;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.EditText[1]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"First name *\"]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[1]")
     MobileElement txt_firstName;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.EditText[2]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Last name *\"])[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[2]")
     MobileElement txt_lastName;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"CONTINUE\"])[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement btn_continueInProfileScreen;
 

@@ -10,11 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 public class EdukaanLaunchScreen {
     MobileActions actions;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(accessibility = "SKIP")
     @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView")
     MobileElement btn_skipLaunchScreen;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(accessibility = "GET STARTED")
     @AndroidFindBy(xpath = "//android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.TextView")
     MobileElement btn_getStartedLaunchScreen;
 
@@ -25,6 +25,7 @@ public class EdukaanLaunchScreen {
     };
 
     public void skipEdukaanLaunchScreen(){
+        actions.acceptAlert();
         actions.click(btn_skipLaunchScreen);
         actions.click(btn_getStartedLaunchScreen);
     }

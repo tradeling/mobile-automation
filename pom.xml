@@ -24,6 +24,11 @@
             <id>edukaan</id>
             <properties>
                 <testNGSuite>edukaan-testng.xml</testNGSuite>
+                <iosApp>edukaan.app</iosApp>
+                <bundleId>com.tradeling.edukaan</bundleId>
+                <androidApp>edukaan.apk</androidApp>
+                <appPackage>com.tadelling.shopifyapps</appPackage>
+                <appActivity>MainActivity</appActivity>
             </properties>
         </profile>
     </profiles>
@@ -44,6 +49,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <forkMode>never</forkMode>
                     <suiteXmlFiles>
                         <suiteXmlFile>${testNGSuite}</suiteXmlFile>
                     </suiteXmlFiles>
@@ -124,5 +130,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.13.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 </project>

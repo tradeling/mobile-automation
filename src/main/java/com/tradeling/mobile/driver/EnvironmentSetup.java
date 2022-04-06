@@ -62,14 +62,14 @@ public class EnvironmentSetup {
     @AfterTest(alwaysRun = true)
     public void afterTest()
     {
-        actions.get().killDriver();
+        actions.get().getDriver().quit();
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
         if(env.equalsIgnoreCase("local")) {
-            mobDriver.killAppiumService();
+//            mobDriver.killAppiumService();
         }
     }
 }

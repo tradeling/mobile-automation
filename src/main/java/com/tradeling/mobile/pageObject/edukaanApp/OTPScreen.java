@@ -11,8 +11,8 @@ public class OTPScreen {
 
     MobileActions actions;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.view.ViewGroup[1]/android.widget.EditText")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeTextField[@name=\"textInput\"])[1]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.EditText")
     MobileElement txt_otpInput;
 
     public OTPScreen(MobileActions action){

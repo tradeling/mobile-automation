@@ -7,39 +7,48 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ShopScreen {
+public class ShopScreen extends EdukaanCommon{
     MobileActions actions;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Shop name *\"]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField")
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[1]")
     MobileElement txt_shopName;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup")
+    @iOSXCUITFindBy(accessibility = "Please enter your shop type")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup")
     MobileElement ddl_shopType;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(accessibility = "Final Regression Collection Regression Collection Restaurant Cafeteria Wholesaler Supermarket Minimarket Grocery Store Barber Shop Beauty Salon Tea Shop Baqala")
     @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup")
-    MobileElement menu_itemInShopType;
+    MobileElement menu_shopType;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.EditText[2]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Please provide your TRN\"])[3]/XCUIElementTypeTextField")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[2]")
     MobileElement txt_taxRegistrationNumber;
 
-    @iOSXCUITFindBy(xpath = "")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"CONTINUE\"])[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement btn_continueInShopScreen;
 
     public ShopScreen(MobileActions action){
+        super(action);
         this.actions = action;
-        PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
+        try {
+            PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public void fillYourShopScreen(String shopName, String taxRegistrationNumber){
+    public void fillYourShopScreen(String shopName, String taxRegistrationNumber) throws InterruptedException {
+        actions.click(txt_shopName);
         actions.enterText(txt_shopName, shopName);
-        actions.click(ddl_shopType);
-        actions.click(menu_itemInShopType);
+        selectFromDropDownListWithoutSearch(ddl_shopType, menu_shopType, "Restaurant");
         actions.enterText(txt_taxRegistrationNumber, taxRegistrationNumber);
+        if (platform.get().equalsIgnoreCase("ios")){
+            actions.hideKeyboard();
+        }
         actions.click(btn_continueInShopScreen);
     }
 
