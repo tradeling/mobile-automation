@@ -63,6 +63,7 @@
                         <appPackage>${appPackage}</appPackage>
                         <appActivity>${appActivity}</appActivity>
                         <appPath></appPath>
+                        <deviceType></deviceType>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
