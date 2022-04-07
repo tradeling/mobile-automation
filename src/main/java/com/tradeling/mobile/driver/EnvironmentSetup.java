@@ -23,7 +23,7 @@ public class EnvironmentSetup {
         reporting = new Reporting();
         reporting.initiateReport();
         if(env.equalsIgnoreCase("local")) {
-            mobDriver.appiumInit();
+//            mobDriver.appiumInit();
         }
         if(System.getProperty("appName").equalsIgnoreCase("buyerApp")){
             PreRequisites preRequisites = new PreRequisites();
@@ -69,14 +69,14 @@ public class EnvironmentSetup {
     @AfterTest(alwaysRun = true)
     public void afterTest()
     {
-        actions.get().killDriver();
+        actions.get().getDriver().quit();
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
         if(env.equalsIgnoreCase("local")) {
-            mobDriver.killAppiumService();
+//            mobDriver.killAppiumService();
         }
     }
 }

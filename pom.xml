@@ -25,6 +25,11 @@
             <id>edukaan</id>
             <properties>
                 <testNGSuite>edukaan-testng.xml</testNGSuite>
+                <iosApp>edukaan.app</iosApp>
+                <bundleId>com.tradeling.edukaan</bundleId>
+                <androidApp>edukaan.apk</androidApp>
+                <appPackage>com.tadelling.shopifyapps</appPackage>
+                <appActivity>MainActivity</appActivity>
             </properties>
         </profile>
     </profiles>
@@ -127,5 +132,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.13.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 </project>

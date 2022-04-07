@@ -3,6 +3,7 @@ package com.tradeling.mobile.pageObject.mobileBuyerApp;
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.driver.MobileActions;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.By;
 
 public class Common {
 
@@ -42,6 +43,5 @@ public class Common {
         }
         return null;
     }
-
 
 }
