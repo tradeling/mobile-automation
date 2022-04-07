@@ -9,7 +9,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class UploadTradeLicenseScreen extends EnvironmentSetup {
+public class UploadTradeLicenseScreen {
     MobileActions actions;
 
     @iOSXCUITFindBy(accessibility = "Trade license Upload")
@@ -42,13 +42,13 @@ public class UploadTradeLicenseScreen extends EnvironmentSetup {
 
     public void uploadTradelicense() throws InterruptedException {
         actions.click(btn_uploadTradeLicense);
-        if (platform.get().equalsIgnoreCase("android")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
             actions.click(link_camera);
             actions.click(link_screenShotAction);
             actions.click(link_screenShotDone);
             GeneralMethods.scrollDown(0.8, 0.1, actions);
         }
-        if (platform.get().equalsIgnoreCase("ios")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
             actions.click(link_uploadFromPhone);
             actions.click(link_file);
         }

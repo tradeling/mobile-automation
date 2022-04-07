@@ -45,10 +45,7 @@ public class ShopScreen extends EdukaanCommon{
         actions.click(txt_shopName);
         actions.enterText(txt_shopName, shopName);
         selectFromDropDownListWithoutSearch(ddl_shopType, menu_shopType, "Restaurant");
-        actions.enterText(txt_taxRegistrationNumber, taxRegistrationNumber);
-        if (platform.get().equalsIgnoreCase("ios")){
-            actions.hideKeyboard();
-        }
+        actions.enterTextWithHideKeyboard(txt_taxRegistrationNumber, taxRegistrationNumber);
         actions.click(btn_continueInShopScreen);
     }
 

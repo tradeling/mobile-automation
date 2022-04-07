@@ -7,7 +7,7 @@ import io.appium.java_client.MobileElement;
 
 import java.util.Random;
 
-public class EdukaanCommon extends EnvironmentSetup {
+public class EdukaanCommon {
 
     MobileActions actions;
     MobileElement itemInDropDownListEle;
@@ -26,10 +26,10 @@ public class EdukaanCommon extends EnvironmentSetup {
     public void selectFromDropDownListWithoutSearch(MobileElement dropdown, MobileElement dropDownMenu, String itemInDropDownListText) {
         actions.click(dropdown);
         actions.waitForElementToDisplay(dropDownMenu);
-        if (platform.get().equalsIgnoreCase("android")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
              itemInDropDownListEle = (MobileElement) actions.getDriver().findElementByXPath("//*[@text='"+itemInDropDownListText+"']");
         }
-        if (platform.get().equalsIgnoreCase("ios")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
              itemInDropDownListEle = (MobileElement) actions.getDriver().findElementByXPath("//*[@name='"+itemInDropDownListText+"']");
         }
         actions.click(itemInDropDownListEle);

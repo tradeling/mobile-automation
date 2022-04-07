@@ -69,6 +69,25 @@ public class MobileActions {
         }
     }
 
+    public void enterTextWithHideKeyboard(MobileElement ele, String text) {
+        try {
+            if(waitForElementIsEnabled(ele)) {
+                waitFor();
+                if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
+                    ele.setValue(text);
+                }
+                else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+                    ele.sendKeys(text);
+                    this.hideKeyboard();
+                }
+                Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Exception occurred while performing Enter Text in field '" + Utilities.getElementNameString(ele) + "'", e);
+        }
+    }
+
     public void waitUntilAlertPresent(){
         WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         wait.until(ExpectedConditions.alertIsPresent());

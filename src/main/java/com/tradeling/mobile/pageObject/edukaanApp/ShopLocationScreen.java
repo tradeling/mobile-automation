@@ -1,5 +1,6 @@
 package com.tradeling.mobile.pageObject.edukaanApp;
 
+import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.driver.MobileActions;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -54,18 +55,12 @@ public class ShopLocationScreen extends EdukaanCommon {
     }
 
     public void fillShopLocationScreen(String city, String area, String street, String buildName){
-        if (platform.get().equalsIgnoreCase("android")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("android")){
             selectFromDropDownListWithoutSearch(ddl_city, menu_city, city);
         }
         selectDropdown(ddl_area, txt_searchArea, area, link_searchAreaResult);
-        actions.enterText(txt_street, street);
-        if (platform.get().equalsIgnoreCase("ios")){
-            actions.hideKeyboard();
-        }
-        actions.enterText(txt_buildingName, buildName);
-        if (platform.get().equalsIgnoreCase("ios")){
-            actions.hideKeyboard();
-        }
+        actions.enterTextWithHideKeyboard(txt_street, street);
+        actions.enterTextWithHideKeyboard(txt_buildingName, buildName);
         actions.click(btn_register);
     }
 }

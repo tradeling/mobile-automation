@@ -8,7 +8,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LocationScreen extends EnvironmentSetup {
+public class LocationScreen {
 
     MobileActions actions;
 
@@ -33,7 +33,7 @@ public class LocationScreen extends EnvironmentSetup {
     }
 
     public void selectLocation(String locationName) {
-        if (platform.get().equalsIgnoreCase("ios")){
+        if (EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
             actions.click(alert_allow);
         }
         actions.click(txt_searchShopLocation);
