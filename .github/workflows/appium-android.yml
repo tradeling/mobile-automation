@@ -32,4 +32,4 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86_64
         profile: Nexus 6
-        script:  mvn clean test -Pedukaan -Denvironment=local -DappPath=/Users/remonrefaat/Desktop/Tradeling/Projec
+        script:  mvn clean test -Pedukaan -Denvironment=local
