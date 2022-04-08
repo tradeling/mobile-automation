@@ -20,7 +20,7 @@ public class AndroidDriver extends Driver{
         AppiumDriver<MobileElement> driver = null;
         DesiredCapabilities caps = new DesiredCapabilities();
         try {
-            // condition to handle if for launching directly the app or using apk
+            //// condition to handle if for launching directly the app or using apk
             String appPath = System.getProperty("user.dir") + "/src/apps";
             String appName = System.getProperty("androidApp");
             if(!appPath.isEmpty()){
