@@ -21,7 +21,7 @@ public class AndroidDriver extends Driver{
         DesiredCapabilities caps = new DesiredCapabilities();
         try {
             // condition to handle if for launching directly the app or using apk
-            String appPath = System.getProperty("appPath");
+            String appPath = System.getProperty("user.dir") + "/src/apps";
             String appName = System.getProperty("androidApp");
             if(!appPath.isEmpty()){
                 caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
