@@ -1,0 +1,17 @@
+{
+  "buyerCompanyStatus": "pending",
+  "buyerCompanyStatusMessage": "",
+  "email": "l1ym97nns7@tradeling.com",
+  "hasOneStopShop": false,
+  "isEnabled": true,
+  "isVerified": true,
+  "legalCompanyName": "",
+  "metadata": {"userType": "buyer", "countryCode": "ae", "lang": "en", "isRegCompleteEmailSent": true},
+  "phoneNumberCode": "971",
+  "secondaryPhoneNumber": "567767655",
+  "secondaryPhoneNumberCode": "971",
+  "supplierCompanyStatus": "pending",
+  "supplierCompanyStatusMessage": "",
+  "tagCodes": [],
+  "tradeFinance": {"fundsAvailable": 0, "fundsApproved": 0, "status": null, "dateApplicationMade": null, "dateFundsApproved": null}
+}

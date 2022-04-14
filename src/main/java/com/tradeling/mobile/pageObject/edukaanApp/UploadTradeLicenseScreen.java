@@ -2,7 +2,6 @@ package com.tradeling.mobile.pageObject.edukaanApp;
 
 import com.tradeling.mobile.driver.EnvironmentSetup;
 import com.tradeling.mobile.driver.MobileActions;
-import com.tradeling.mobile.pageObject.helper.GeneralMethods;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -46,7 +45,7 @@ public class UploadTradeLicenseScreen {
             actions.click(link_camera);
             actions.click(link_screenShotAction);
             actions.click(link_screenShotDone);
-            GeneralMethods.scrollDown(0.8, 0.1, actions);
+            actions.scrollDown(0.8, 0.1);
         }
         if (EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
             actions.click(link_uploadFromPhone);

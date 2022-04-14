@@ -63,7 +63,6 @@ public class EnvironmentSetup {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     @AfterTest(alwaysRun = true)

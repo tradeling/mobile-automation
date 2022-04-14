@@ -42,4 +42,8 @@ public class PropertyFileHandle {
         return  getPropertyValue(key,"src/main/resources/setup","deviceDetails.properties");
     }
 
+    public static String getPropertyForEnvironmentURLs(String key){
+        return  getPropertyValue(key,"src/main/resources/setup","environmentURLs.properties");
+    }
+
 }
