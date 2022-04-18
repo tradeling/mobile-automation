@@ -50,7 +50,6 @@ public class EnvironmentSetup {
         else if(env.equalsIgnoreCase("remote")){
             actions.set(new MobileActions(driver.createRemoteDriver()));
         }
-
     }
 
     @Parameters("deviceType")
