@@ -34,14 +34,13 @@ public class EnvironmentSetup {
 
 
     @BeforeTest(alwaysRun = true)
-    @Parameters("deviceType")
-    public void initDriver(String deviceType) {
-        platform.set(deviceType);
+    public void initDriver() {
+        platform.set(System.getProperty("deviceType"));
         Driver driver = null;
-        if(deviceType.equalsIgnoreCase("android")) {
+        if(System.getProperty("deviceType").equalsIgnoreCase("android")) {
             driver = new AndroidDriver();
         }
-        else if(deviceType.equalsIgnoreCase("ios")) {
+        else if(System.getProperty("deviceType").equalsIgnoreCase("ios")) {
             driver = new IosDriver();
         }
         if(env.equalsIgnoreCase("local")){
@@ -52,13 +51,12 @@ public class EnvironmentSetup {
         }
     }
 
-    @Parameters("deviceType")
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(String deviceType, Method method)
+    public void beforeMethod(Method method)
     {
         try {
             String test = method.getName();
-            reporting.setLogger(method.getName() + " ("+ deviceType+")");
+            reporting.setLogger(method.getName() + " ("+ System.getProperty("deviceType")+")");
         }catch (Exception e){
             e.printStackTrace();
         }
