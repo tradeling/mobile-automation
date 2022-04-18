@@ -4,6 +4,9 @@ import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.Utilities;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -247,6 +250,19 @@ public class MobileActions {
             Reporting.getLogger().logFail("Element with locator '" + locator + "' is not found", e);
             return null;
         }
+    }
+
+    public void scrollDown(double startPoint, double endPoint) throws InterruptedException{
+        Thread.sleep(1000);
+        Dimension dimension = this.getDriver().manage().window().getSize();
+        int scrollStart = (int) (dimension.getHeight() * startPoint);
+        int scrollEnd = (int) (dimension.getHeight() * endPoint);
+        TouchAction swipe = new TouchAction(this.getDriver())
+                .press(PointOption.point(0,scrollStart))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(800)))
+                .moveTo(PointOption.point(0,scrollEnd))
+                .release()
+                .perform();
     }
 
     public void killDriver()

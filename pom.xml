@@ -64,6 +64,7 @@
                         <appActivity>${appActivity}</appActivity>
                         <appPath></appPath>
                         <deviceType></deviceType>
+                        <testingEnvironment>stage</testingEnvironment>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

@@ -5,6 +5,7 @@
     <test name="Regression Test">
         <classes>
             <class name="com.tradeling.mobile.edukaanApp.test.Registration" />
+            <class name="com.tradeling.mobile.edukaanApp.test.Login" />
         </classes>
     </test>
 </suite>

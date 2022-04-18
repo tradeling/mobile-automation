@@ -49,7 +49,6 @@ public class EnvironmentSetup {
         else if(env.equalsIgnoreCase("remote")){
             actions.set(new MobileActions(driver.createRemoteDriver()));
         }
-
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -61,7 +60,6 @@ public class EnvironmentSetup {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     @AfterTest(alwaysRun = true)
