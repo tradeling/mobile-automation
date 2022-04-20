@@ -19,7 +19,7 @@ public class Registration extends EnvironmentSetup {
     RegistrationSuccessfulScreen registrationSuccessfulScreen;
 
     @Test
-    public void registerAsANewUser() throws InterruptedException{
+    public void userCanRegisterSuccessfully() throws InterruptedException{
         edukaanLaunchScreen = new EdukaanLaunchScreen(actions.get());
         phoneNumberScreen = new PhoneNumberScreen(actions.get());
         otpScreen = new OTPScreen(actions.get());

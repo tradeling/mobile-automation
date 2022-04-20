@@ -12,4 +12,5 @@ public class EdukaanData {
     public static String shopLocationStreet = "Al Wasl Rd";
     public static String shopLocationCityBuildingName = "Nahda Tower";
     public static String registrationSuccessfulMessage = "We are verifying your account";
+    public static String productName = "Automation Test Product";
 }
