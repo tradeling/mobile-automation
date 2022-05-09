@@ -36,32 +36,31 @@ public class MobileActions {
         }
     }
 
-    public String getText(MobileElement ele){
+    public String getText(MobileElement ele) {
         String text = "";
-        try{
+        try {
             waitForElementToDisplay(ele);
             text = ele.getText();
             Reporting.getLogger().logPass("Fetched text from element '"+ Utilities.getElementNameString(ele) + "': '" + text + "'");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Reporting.getLogger().logFail("Exception occurred while fetching text from element '" + Utilities.getElementNameString(ele) + "'", e);
-
         }
         return text;
     }
 
-    public void enterText(MobileElement ele, String text) {
+	public void enterText(MobileElement ele, String text) {
         try {
             if(waitForElementIsEnabled(ele)) {
                 waitFor();
                 if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
                     ele.setValue(text);
-                }
-                else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+                } else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")) {
                     ele.sendKeys(text);
                     hideKeyboard();
                 }
+                
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
             }
         } catch (Exception e) {
@@ -70,12 +69,23 @@ public class MobileActions {
         }
     }
 
-    public void waitUntilAlertPresent(){
+    @SuppressWarnings("deprecation")
+    public void sendKeys(Keys... keysToSend) {
+        try {
+        	driver.getKeyboard().sendKeys(keysToSend);
+            Reporting.getLogger().logPass("Entered keys on soft keyboard");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Exception occurred while performing Enter Text in field '", e);
+        }
+    }
+
+    public void waitUntilAlertPresent() {
         WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public void acceptAlert(){
+    public void acceptAlert() {
         try{
             Alert alert = getDriver().switchTo().alert();
             alert.accept();
@@ -236,4 +246,6 @@ public class MobileActions {
         getDriver().quit();
     }
 
+   
+    
 }

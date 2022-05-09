@@ -16,4 +16,5 @@ public class Constants {
     public static String buyerTestDataFilePath = "src/main/resources/buyerApp/testData";
     public static String buyerTestDataFile = "testData.properties";
     public static String invalidPassword= "InvalidPassword";
+    public static String Search_Keyword = "Lavazza";
 }

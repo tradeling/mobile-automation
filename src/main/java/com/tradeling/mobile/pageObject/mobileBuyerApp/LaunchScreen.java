@@ -1,20 +1,11 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
-import com.google.common.collect.ImmutableMap;
 import com.tradeling.mobile.driver.MobileActions;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.appium.java_client.touch.TapOptions;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
-
-import java.awt.event.KeyEvent;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LaunchScreen {
 
