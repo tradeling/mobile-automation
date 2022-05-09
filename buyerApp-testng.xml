@@ -5,17 +5,21 @@
     <test name="androidTest">
         <parameter name="deviceType" value="android" />
         <classes>
-            <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>
-            <class name="com.tradeling.mobile.buyerApp.tests.Login"/>
+            <!-- <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>-->
+            <class name="com.tradeling.mobile.buyerApp.tests.BuyerAppE2E">
+				<methods>
+					<include name="buyerApp_e2e"/>
+				</methods>
+            </class>
 
         </classes>
     </test>
 
-    <test name="iosTest">
+    <!-- <test name="iosTest">
         <parameter name="deviceType" value="ios" />
         <classes>
             <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>
             <class name="com.tradeling.mobile.buyerApp.tests.Login"/>
         </classes>
-    </test>
+    </test> -->
 </suite>
