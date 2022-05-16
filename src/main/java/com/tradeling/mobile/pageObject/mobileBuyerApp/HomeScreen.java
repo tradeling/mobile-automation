@@ -51,4 +51,14 @@ public class HomeScreen {
 		actions.sendKeys(Keys.ENTER);
     	
     }
+    
+    public void waitForMiliseconds(long miliseconds) {
+    	
+    	try {
+			Thread.sleep(miliseconds);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }
