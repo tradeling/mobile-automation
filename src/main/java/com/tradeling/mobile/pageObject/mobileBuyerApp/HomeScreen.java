@@ -1,6 +1,5 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
-import com.tradeling.data.buyerApp.Constants;
 import com.tradeling.mobile.driver.MobileActions;
 
 import io.appium.java_client.MobileElement;
@@ -19,7 +18,7 @@ public class HomeScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Account']")
     MobileElement link_account;
 
-	
+    
 	@AndroidFindBy(xpath="//android.view.ViewGroup[@resource-id='company-logo']/following-sibling::android.view.ViewGroup/android.widget.EditText")
 	MobileElement txt_searchBox;
 
