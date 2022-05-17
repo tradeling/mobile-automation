@@ -143,9 +143,7 @@ public class MobileActions {
 
     public void hideKeyboard() {
         try{
-            if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")) {
                 getDriver().getKeyboard().sendKeys("\n");
-            }
         }
         catch (Exception e)
         {
