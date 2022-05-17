@@ -14,6 +14,10 @@ public class HomePage {
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]")
     MobileElement txt_searchComponent;
 
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"10 AED 150.00 Excl. VAT View Cart\"])[2]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup")
+    MobileElement btn_viewCart;
+
     public HomePage(MobileActions action){
         this.actions = action;
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -23,4 +27,9 @@ public class HomePage {
         actions.waitForElementToDisplay(txt_searchComponent);
       return  actions.waitForElementToDisplay(txt_searchComponent);
     }
+
+    public void pressOnViewCart() {
+        actions.click(btn_viewCart);
+    }
+
 }

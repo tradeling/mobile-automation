@@ -57,7 +57,7 @@ public class MobileActions {
     public void enterText(MobileElement ele, String text) {
         try {
             if(waitForElementIsEnabled(ele)) {
-                waitFor();
+                waitFor(500);
                 if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
                     ele.setValue(text);
                 }
@@ -75,7 +75,7 @@ public class MobileActions {
     public void enterTextWithHideKeyboard(MobileElement ele, String text) {
         try {
             if(waitForElementIsEnabled(ele)) {
-                waitFor();
+                waitFor(500);
                 if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
                     ele.setValue(text);
                 }
@@ -131,9 +131,9 @@ public class MobileActions {
         return text;
     }
 
-    public void waitFor(){
+    public void waitFor(int waitValue){
         try {
-            Thread.sleep(500);
+            Thread.sleep(waitValue);
         }
         catch (Exception e)
         {

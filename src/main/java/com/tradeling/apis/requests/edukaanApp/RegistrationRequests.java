@@ -10,12 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationRequests {
-    public String userToken;
+    public static String userToken;
     public String backofficeUserToken;
     public static String registeredCompanyName;
     public static String registeredfirstName;
     public static String registeredID;
     public static String registeredlastName;
+    public static String cartId;
 
     public void userLogin() {
         Response response =
@@ -40,7 +41,7 @@ public class RegistrationRequests {
         userToken = (String) jsonPathEvaluator.get("token");
         registeredCompanyName = (String) jsonPathEvaluator.get("user.companyName");
         registeredfirstName = (String) jsonPathEvaluator.get("user.firstName");
-        registeredID = (String) jsonPathEvaluator.get("user._id");
+        cartId = registeredID = (String) jsonPathEvaluator.get("user._id");
         registeredlastName = (String) jsonPathEvaluator.get("user.lastName");
 
     }
