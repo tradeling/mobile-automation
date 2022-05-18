@@ -1,0 +1,30 @@
+{
+  "collectionId": "61b88dd78607a9001c58b221",
+  "companyName": "shopname",
+  "countryCode": "AE",
+  "firstName": "test",
+  "lastName": "user",
+  "location": {
+  "address": "Dubai Airport Free Zone - Dubai - United Arab Emirates",
+  "area": "Al Jafiliya",
+  "building": "flooooor",
+  "city": "Dubai",
+  "label": "shopname",
+  "lat": "25.2048",
+  "lng": "55.2708",
+  "neighborhood": "Al Jafiliya",
+  "phone": "567767655",
+  "phoneCode": "971",
+  "phoneNumber1": "567767655",
+  "phoneNumberCode1": "971",
+  "street1": "streeeet"
+},
+  "phoneNumber": "567767655",
+  "phoneNumberCode": "971",
+  "role": "employee",
+  "secondaryPhoneNumber": "567767655",
+  "secondaryPhoneNumberCode": "971",
+  "shopType": "Restaurant",
+  "taxRegistrationNumber": "123456789012345",
+  "verificationCode": "1234"
+}

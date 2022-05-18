@@ -1,0 +1,19 @@
+{
+  "certificates": [
+{
+  "attachments": [
+{
+  "id": "62552d73129bb6001cf9033b",
+  "name": "1164a61302460f18a9e69bbdff96aa5b.pdf",
+  "url": "https://s3.eu-west-1.amazonaws.com/backend-stage-media-storage-origin/module-catalog-pim/.tmp/2552d0d4cdfeece9dbd6f68/buyer-company-setting/1164a61302460f18a9e69bbdff96aa5b.pdf"
+}
+],
+  "metadata": {
+  "encoding": "7bit",
+  "mimetype": "application/pdf",
+  "size": "83186"
+},
+  "type": "tradeLicense"
+}
+]
+}

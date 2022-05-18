@@ -1,9 +1,11 @@
 package com.tradeling.utilities;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.MobileElement;
 
+import java.nio.file.Paths;
 import java.time.Year;
-import java.util.Date;
+import java.util.Map;
 import java.util.Random;
 
 public class Utilities {
@@ -32,6 +34,34 @@ public class Utilities {
 
     public static String getRandomDate(){
         return "" + new Random().nextInt(28);
+    }
+
+    public static Map<String, Object> readJson(String filePath) {
+        try {
+            // create object mapper instance
+            ObjectMapper mapper = new ObjectMapper();
+
+            // convert JSON file to map
+            Map<String, Object> map = mapper.readValue(Paths.get(filePath).toFile(), Map.class);
+
+            return map;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String convertJsonFileToStringPayload(String jsonFilePath){
+        try
+        {
+            Map<?,?> docUploadPayload = Utilities.readJson(jsonFilePath);
+            return new ObjectMapper().writeValueAsString(docUploadPayload);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
