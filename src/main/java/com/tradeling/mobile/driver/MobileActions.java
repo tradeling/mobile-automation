@@ -3,6 +3,7 @@ package com.tradeling.mobile.driver;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.Utilities;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -78,6 +79,25 @@ public class MobileActions {
             e.printStackTrace();
             Reporting.getLogger().logFail("Exception occurred while performing Enter Text in field '", e);
         }
+    }
+    
+    public MobileElement scrollToElementWithText(String text) {
+    	return driver.findElement(MobileBy.AndroidUIAutomator(
+    	        "new UiScrollable(new UiSelector().scrollable(true))" +
+    	         ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
+    }
+    
+    public void waitForMiliseconds(long miliseconds) {
+    	try {
+			Thread.sleep(miliseconds);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public String getPageSource() {
+    	return driver.getPageSource();
     }
 
     public void waitUntilAlertPresent() {
