@@ -83,4 +83,17 @@ public class RequestUtility {
             return null;
         }
     }
+
+    public static String createUserAddToCartPayload(int productQuantity){
+        try {
+            Map<String, Object> addProductToTheCartPayload = new HashMap<String, Object>();
+            addProductToTheCartPayload = Utilities.readJson("src/main/resources/edukaanApp/apiRequestBody/addToCart.json");
+            addProductToTheCartPayload.put("qty", productQuantity);
+            addProductToTheCartPayload.put("cartId", RegistrationRequests.cartId);
+            return new ObjectMapper().writeValueAsString(addProductToTheCartPayload);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
