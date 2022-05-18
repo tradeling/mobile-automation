@@ -108,7 +108,7 @@ public class RegistrationScreen {
         boolean flag = false;
 
         actions.click(button_next);
-        actions.waitFor();
+        actions.waitFor(500);
         if(actions.waitForElementToDisplay(textBox_email)){
             flag = true;
             Reporting.getLogger().logPass("Successfully landed on 'Add user email and password' screen");

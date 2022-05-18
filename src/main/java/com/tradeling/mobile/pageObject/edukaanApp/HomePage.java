@@ -14,12 +14,16 @@ public class HomePage {
     MobileActions actions;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"What are you looking for today?\"])[2]")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='What are you looking for today?']")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]")
     MobileElement txt_searchComponent;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"What are you looking for today?\"])[2]")
     @AndroidFindBy(xpath = "//android.widget.EditText")
     MobileElement txt_editSearchComponent;
+
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"10 AED 150.00 Excl. VAT View Cart\"])[2]")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup")
+    MobileElement btn_viewCart;
 
     public HomePage(MobileActions action){
         this.actions = action;
@@ -39,4 +43,9 @@ public class HomePage {
             actions.hideKeyboard();
         }
     }
+
+    public void pressOnViewCart() {
+        actions.click(btn_viewCart);
+    }
+
 }

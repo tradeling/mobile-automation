@@ -7,6 +7,7 @@
             <class name="com.tradeling.mobile.edukaanApp.test.Registration" />
             <class name="com.tradeling.mobile.edukaanApp.test.Login" />
             <class name="com.tradeling.mobile.edukaanApp.test.Search" />
+            <class name="com.tradeling.mobile.edukaanApp.test.Checkout" />
         </classes>
     </test>
 </suite>
