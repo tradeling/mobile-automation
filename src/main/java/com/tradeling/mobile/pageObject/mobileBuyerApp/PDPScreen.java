@@ -30,6 +30,7 @@ public class PDPScreen {
 	}
 
 	public void btnAddToCartPDP() {
+		actions.waitForMiliseconds(3000);
 		actions.click(btnAddToCart);
 	}
 

@@ -15,7 +15,7 @@ public class CheckoutScreen {
 	String number = "0999999999";
 	String text = "test";
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='collapsed'])[2]/android.view.ViewGroup/android.view.ViewGroup")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank Transfer to Tradeling']")
 	MobileElement btnBankTransfer;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PROCEED TO REVIEW']")
@@ -24,7 +24,7 @@ public class CheckoutScreen {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PURCHASE']")
 	MobileElement btnPurchase;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Thank you, your order has been placed']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Thank you, your order has been placed.']")
 	MobileElement txtOrderPlaced;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Ship to ']")
@@ -48,26 +48,14 @@ public class CheckoutScreen {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Address']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/android.widget.EditText")
 	MobileElement inputBusinessAddress;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='State']")
-	MobileElement txtState;
-	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='State']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/android.widget.EditText")
 	MobileElement inputState;
-	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='P.O. box']")
-	MobileElement txtPoBox;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='P.O. box']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/android.widget.EditText")
 	MobileElement inputPoBox;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Address label']")
-	MobileElement txtAddressLabel;
-	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Address label']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/android.widget.EditText")
 	MobileElement inputAddressLabel;
-	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone number']")
-	MobileElement txtPhoneNumber;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone number']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/android.widget.EditText")
 	MobileElement inputPhoneNumber;
@@ -88,7 +76,9 @@ public class CheckoutScreen {
 	}
 
 	public void btnBankTransferCheckout() {
-		actions.click(btnBankTransfer);
+		actions.waitForMiliseconds(3000);
+		MobileElement bankTransferBtn = actions.scrollToElementWithText("Bank Transfer to Tradeling");
+		actions.click(bankTransferBtn);
 	}
 
 	public void btnProceedToReviewCheckout() {
@@ -100,23 +90,20 @@ public class CheckoutScreen {
 	}
 
 	public String txtOrderPlaced() {
+		actions.waitForMiliseconds(3000);
 		return actions.getText(txtOrderPlaced);
-
 	}
 	
 	public void createAddress() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		actions.waitForMiliseconds(3000);
+		
 		actions.click(btnShipToCollapsed);
 		actions.click(btnAddAddress);
 		
 		actions.click(drpdwnCity);
 		
-		Thread.sleep(2000);
+
+		actions.waitForMiliseconds(2000);
 		actions.enterText(inputTextField, city);
 		actions.click(selectCity);
 		
@@ -136,8 +123,6 @@ public class CheckoutScreen {
 		actions.enterText(inputPhoneNumber, number);
 		
 		actions.sendKeys(Keys.ENTER);
-
-		System.out.println(actions.getPageSource());
 
 		actions.click(checkboxBilling);
 		actions.click(btnDone);
