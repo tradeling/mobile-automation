@@ -4,21 +4,8 @@
 
     <test name="Regression Test">
         <classes>
-            <!-- <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>-->
-            <class name="com.tradeling.mobile.buyerApp.tests.BuyerAppE2E">
-				<methods>
-					<include name="buyerApp_e2e"/>
-				</methods>
-            </class>
+            <class name="com.tradeling.mobile.buyerApp.tests.BuyerAppE2E"/>
 
         </classes>
     </test>
-
-    <!-- <test name="iosTest">
-        <parameter name="deviceType" value="ios" />
-        <classes>
-            <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>
-            <class name="com.tradeling.mobile.buyerApp.tests.Login"/>
-        </classes>
-    </test> -->
 </suite>

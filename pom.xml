@@ -23,6 +23,11 @@
 			<id>edukaan</id>
 			<properties>
 				<testNGSuite>edukaan-testng.xml</testNGSuite>
+				<iosApp>edukaan.app</iosApp>
+				<bundleId>com.tradeling.edukaan</bundleId>
+				<androidApp>edukaan.apk</androidApp>
+				<appPackage>com.tadelling.shopifyapps</appPackage>
+				<appActivity>MainActivity</appActivity>
 			</properties>
 		</profile>
 	</profiles>
@@ -56,6 +61,8 @@
 						<appPackage>${appPackage}</appPackage>
 						<appActivity>${appActivity}</appActivity>
 						<appPath></appPath>
+						<deviceType></deviceType>
+						<testingEnvironment>stage</testingEnvironment>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
