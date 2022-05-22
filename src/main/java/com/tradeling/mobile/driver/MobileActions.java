@@ -108,15 +108,6 @@ public class MobileActions {
     	         ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
     }
     
-    public void waitForMiliseconds(long miliseconds) {
-    	try {
-			Thread.sleep(miliseconds);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    
     public String getPageSource() {
     	return driver.getPageSource();
     }

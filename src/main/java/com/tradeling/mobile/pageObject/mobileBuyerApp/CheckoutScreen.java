@@ -76,9 +76,15 @@ public class CheckoutScreen {
 	}
 
 	public void btnBankTransferCheckout() {
-		actions.waitForMiliseconds(3000);
-		MobileElement bankTransferBtn = actions.scrollToElementWithText("Bank Transfer to Tradeling");
-		actions.click(bankTransferBtn);
+		actions.waitFor(3000);
+//		MobileElement bankTransferBtn = actions.scrollToElementWithText("Bank Transfer to Tradeling");
+		try {
+			actions.scrollDown(20, 80);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		actions.click(bankTransferBtn);
 	}
 
 	public void btnProceedToReviewCheckout() {
@@ -90,12 +96,12 @@ public class CheckoutScreen {
 	}
 
 	public String txtOrderPlaced() {
-		actions.waitForMiliseconds(3000);
+		actions.waitFor(3000);
 		return actions.getText(txtOrderPlaced);
 	}
 	
 	public void createAddress() {
-		actions.waitForMiliseconds(3000);
+		actions.waitFor(3000);
 		
 		actions.click(btnShipToCollapsed);
 		actions.click(btnAddAddress);
@@ -103,7 +109,7 @@ public class CheckoutScreen {
 		actions.click(drpdwnCity);
 		
 
-		actions.waitForMiliseconds(2000);
+		actions.waitFor(2000);
 		actions.enterText(inputTextField, city);
 		actions.click(selectCity);
 		
