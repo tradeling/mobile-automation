@@ -66,7 +66,8 @@ public class CheckoutScreen {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='DONE']")
 	MobileElement btnDone;
 
-
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank Transfer to Tradeling']")
+	MobileElement bankTransferBtn;
 	
 	MobileActions actions;
 
@@ -76,15 +77,14 @@ public class CheckoutScreen {
 	}
 
 	public void btnBankTransferCheckout() {
-		actions.waitFor(3000);
-//		MobileElement bankTransferBtn = actions.scrollToElementWithText("Bank Transfer to Tradeling");
+		actions.waitFor(7000);
 		try {
-			actions.scrollDown(20, 80);
+			actions.scrollDown(0.8, 0.2);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-//		actions.click(bankTransferBtn);
+		actions.click(bankTransferBtn);
 	}
 
 	public void btnProceedToReviewCheckout() {

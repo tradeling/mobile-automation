@@ -102,12 +102,6 @@ public class MobileActions {
         }
     }
     
-    public MobileElement scrollToElementWithText(String text) {
-    	return driver.findElement(MobileBy.AndroidUIAutomator(
-    	        "new UiScrollable(new UiSelector().scrollable(true))" +
-    	         ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
-    }
-    
     public String getPageSource() {
     	return driver.getPageSource();
     }
@@ -271,15 +265,15 @@ public class MobileActions {
         }
     }
 
+    // Receives the start and end touch point on screen. The values can be between 0 - 1
     public void scrollDown(double startPoint, double endPoint) throws InterruptedException{
-        Thread.sleep(1000);
-        Dimension dimension = this.getDriver().manage().window().getSize();
+        Dimension dimension = driver.manage().window().getSize();
         int scrollStart = (int) (dimension.getHeight() * startPoint);
         int scrollEnd = (int) (dimension.getHeight() * endPoint);
-        TouchAction swipe = new TouchAction(this.getDriver())
-                .press(PointOption.point(0,scrollStart))
+        new TouchAction(driver)
+                .press(PointOption.point(0, scrollStart))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(800)))
-                .moveTo(PointOption.point(0,scrollEnd))
+                .moveTo(PointOption.point(0, scrollEnd))
                 .release()
                 .perform();
     }
