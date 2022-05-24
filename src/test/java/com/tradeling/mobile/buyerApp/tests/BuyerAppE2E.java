@@ -25,27 +25,30 @@ public class BuyerAppE2E extends EnvironmentSetup {
 	@Test
 	public void buyerApp_e2e() {
 		loginScreen = new LoginScreen(actions.get());
+		checkoutScreen = new CheckoutScreen(actions.get());
+        pdpScreen = new PDPScreen(actions.get());
+		homeScreen = new HomeScreen(actions.get());
+        cartScreen = new CartScreen(actions.get());
+		plpScreen = new PLPScreen(actions.get());
+
+
+
 		loginScreen.login_buyer(platform);
 		
 		
-		homeScreen = new HomeScreen(actions.get());
 		homeScreen.searchBox(Constants.Search_Keyword);
 		
 		
-		plpScreen = new PLPScreen(actions.get());
 		plpScreen.clickOnProduct();
 		
-        pdpScreen = new PDPScreen(actions.get());
         pdpScreen.btnAddToCartPDP();
 
         pdpScreen.addToCartBtnPopup();
         pdpScreen.btnCheckoutPopup();
 
-        cartScreen = new CartScreen(actions.get());
         
         cartScreen.btnCheckoutOnCart();
 		
-		checkoutScreen = new CheckoutScreen(actions.get());
 		checkoutScreen.createAddress();
 		
         checkoutScreen.btnBankTransferCheckout();

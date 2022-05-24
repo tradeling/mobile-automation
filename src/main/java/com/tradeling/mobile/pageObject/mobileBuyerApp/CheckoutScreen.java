@@ -2,6 +2,7 @@ package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
+import com.tradeling.data.buyerApp.Constants;
 
 import com.tradeling.mobile.driver.MobileActions;
 
@@ -10,10 +11,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class CheckoutScreen {
-	
-	String city = "Dubai";
-	String number = "0999999999";
-	String text = "test";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Bank Transfer to Tradeling']")
 	MobileElement btnBankTransfer;
@@ -77,7 +74,7 @@ public class CheckoutScreen {
 	}
 
 	public void btnBankTransferCheckout() {
-		actions.waitFor(7000);
+		actions.waitFor(8000);
 		try {
 			actions.scrollDown(0.8, 0.2);
 		} catch (InterruptedException e) {
@@ -110,23 +107,23 @@ public class CheckoutScreen {
 		
 
 		actions.waitFor(2000);
-		actions.enterText(inputTextField, city);
+		actions.enterText(inputTextField, Constants.city);
 		actions.click(selectCity);
 		
 		actions.click(txtBusinessAddress);
-		actions.enterText(inputBusinessAddress, text);
+		actions.enterText(inputBusinessAddress, Constants.text);
 
 		actions.sendKeys(Keys.ENTER);
-		actions.enterText(inputState, text);
+		actions.enterText(inputState, Constants.text);
 		
 		actions.sendKeys(Keys.ENTER);
-		actions.enterText(inputPoBox, text);
+		actions.enterText(inputPoBox, Constants.text);
 		
 		actions.sendKeys(Keys.ENTER);
-		actions.enterText(inputAddressLabel, text);
+		actions.enterText(inputAddressLabel, Constants.text);
 		
 		actions.sendKeys(Keys.ENTER);
-		actions.enterText(inputPhoneNumber, number);
+		actions.enterText(inputPhoneNumber, Constants.number);
 		
 		actions.sendKeys(Keys.ENTER);
 
