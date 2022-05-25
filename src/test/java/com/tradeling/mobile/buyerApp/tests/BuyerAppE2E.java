@@ -20,41 +20,35 @@ public class BuyerAppE2E extends EnvironmentSetup {
 	PDPScreen pdpScreen;
 	CartScreen cartScreen;
 	CheckoutScreen checkoutScreen;
-	
 
 	@Test
 	public void buyerApp_e2e() {
 		loginScreen = new LoginScreen(actions.get());
 		checkoutScreen = new CheckoutScreen(actions.get());
-        pdpScreen = new PDPScreen(actions.get());
+		pdpScreen = new PDPScreen(actions.get());
 		homeScreen = new HomeScreen(actions.get());
-        cartScreen = new CartScreen(actions.get());
+		cartScreen = new CartScreen(actions.get());
 		plpScreen = new PLPScreen(actions.get());
 
-
-
 		loginScreen.login_buyer(platform);
-		
-		
+
 		homeScreen.searchBox(Constants.Search_Keyword);
-		
-		
+
 		plpScreen.clickOnProduct();
-		
-        pdpScreen.btnAddToCartPDP();
 
-        pdpScreen.addToCartBtnPopup();
-        pdpScreen.btnCheckoutPopup();
+		pdpScreen.btnAddToCartPDP();
 
-        
-        cartScreen.btnCheckoutOnCart();
-		
+		pdpScreen.addToCartBtnPopup();
+		pdpScreen.btnCheckoutPopup();
+
+		cartScreen.btnCheckoutOnCart();
+
 		checkoutScreen.createAddress();
-		
-        checkoutScreen.btnBankTransferCheckout();
-        checkoutScreen.btnProceedToReviewCheckout();
-        checkoutScreen.btnPurchaseCheckout();
-		
-		Assert.assertEquals(checkoutScreen.txtOrderPlaced().equalsIgnoreCase("Thank you, your order has been placed."), true);   
+
+		checkoutScreen.btnBankTransferCheckout();
+		checkoutScreen.btnProceedToReviewCheckout();
+		checkoutScreen.btnPurchaseCheckout();
+		Assert.assertEquals(checkoutScreen.txtOrderPlaced().equalsIgnoreCase("Thank you, your order has been placed."),
+				true);
 	}
 }
