@@ -6,7 +6,7 @@
 		<classes>
 			<class name="com.tradeling.mobile.buyerApp.tests.Registration" />
 			<class name="com.tradeling.mobile.buyerApp.tests.Login" />
-			<class name="com.tradeling.mobile.buyerApp.tests.BuyerAppE2E" />
+			<class name="com.tradeling.mobile.buyerApp.tests.Checkout" />
 
 		</classes>
 	</test>

@@ -12,7 +12,7 @@ import com.tradeling.mobile.pageObject.mobileBuyerApp.LoginScreen;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.PDPScreen;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.PLPScreen;
 
-public class BuyerAppE2E extends EnvironmentSetup {
+public class Checkout extends EnvironmentSetup {
 
 	LoginScreen loginScreen;
 	HomeScreen homeScreen;
