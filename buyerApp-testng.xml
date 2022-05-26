@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BuyerApp Suite"  thread-count="1">
+<suite name="BuyerApp Suite" thread-count="1">
 
-    <test name="Regression Test">
-        <classes>
-            <class name="com.tradeling.mobile.buyerApp.tests.Registration"/>
-            <class name="com.tradeling.mobile.buyerApp.tests.Login"/>
+	<test name="Regression Test">
+		<classes>
+			<class name="com.tradeling.mobile.buyerApp.tests.Registration" />
+			<class name="com.tradeling.mobile.buyerApp.tests.Login" />
+			<class name="com.tradeling.mobile.buyerApp.tests.Checkout" />
 
-        </classes>
-    </test>
+		</classes>
+	</test>
 </suite>

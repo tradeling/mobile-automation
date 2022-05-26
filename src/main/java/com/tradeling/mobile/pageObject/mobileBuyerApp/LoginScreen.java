@@ -1,17 +1,21 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
+import com.tradeling.data.buyerApp.Constants;
 import com.tradeling.mobile.driver.MobileActions;
+
 import com.tradeling.reporting.Reporting;
+import com.tradeling.utilities.PropertyFileHandle;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class LoginScreen {
 
     MobileActions actions;
-
 
 
     @iOSXCUITFindBy(accessibility = "Email address login_email_address")
@@ -49,6 +53,23 @@ public class LoginScreen {
         actions.hideKeyboard();
         actions.click(btn_login);
     }
+    
+    public String login_buyer(ThreadLocal<String> platform)
+    {
+        String username = PropertyFileHandle.getPropertyValue("unverifiedBuyerEmail", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+        String password = PropertyFileHandle.getPropertyValue("unverifiedBuyerPassword", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+        LaunchScreen launchScreen = new LaunchScreen(actions);
+        
+        if(platform.get().equalsIgnoreCase("ios")) {
+            launchScreen.acceptNotificationAlert(false);
+        }
+        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
+
+		LoginScreen loginScreen = new LoginScreen(actions);
+        loginScreen.enterUserAndPass(username, password);
+        
+        return username;
+   }
 
 
     public void navigateToRegistration(){

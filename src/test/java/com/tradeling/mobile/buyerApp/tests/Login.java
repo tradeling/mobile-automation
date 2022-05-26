@@ -21,18 +21,11 @@ public class Login extends EnvironmentSetup {
 
     //QTM - 6524
     @Test
-    private void login_buyer()
+	private void login_buyer()
     {
-        String username = PropertyFileHandle.getPropertyValue("unverifiedBuyerEmail", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
-        String password = PropertyFileHandle.getPropertyValue("unverifiedBuyerPassword", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
-        launchScreen = new LaunchScreen(actions.get());
-        if(platform.get().equalsIgnoreCase("ios")) {
-            launchScreen.acceptNotificationAlert(false);
-        }
-        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
-
-        loginScreen = new LoginScreen(actions.get());
-        loginScreen.enterUserAndPass(username, password);
+    	
+    	String username = loginScreen.login_buyer(platform);
+    	
         homeScreen = new HomeScreen(actions.get());
         homeScreen.navigateToAccountScreen();
         accountScreen = new AccountScreen(actions.get());
