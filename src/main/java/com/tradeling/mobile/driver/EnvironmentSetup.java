@@ -5,15 +5,20 @@ import com.tradeling.apis.utility.TestDataHandler;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.PropertyFileHandle;
 import org.testng.annotations.*;
+import se.vidstige.jadb.JadbException;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class EnvironmentSetup {
 
-    public static String env = System.getProperty("environment");
+    public static PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
+    public static String env = propertyFileHandle.getPropertyForExecution("appEnv");
+    public static String targetApp = propertyFileHandle.getPropertyForExecution("targetApp");
+    public static String executionPlatform = propertyFileHandle.getPropertyForExecution("executionPlatform");
+
     MobileDriver mobDriver = new MobileDriver();
     static Reporting reporting;
-    public static PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
     public static ThreadLocal<String> platform = new ThreadLocal<String>();
 
     public ThreadLocal<MobileActions> actions = new ThreadLocal<MobileActions>();
@@ -25,7 +30,7 @@ public class EnvironmentSetup {
         if(env.equalsIgnoreCase("local")) {
 //            mobDriver.appiumInit();
         }
-        if(System.getProperty("appName").equalsIgnoreCase("buyerApp")){
+        if(targetApp.equalsIgnoreCase("buyerApp")){
             PreRequisites preRequisites = new PreRequisites();
             preRequisites.createUnverifiedBuyer();
             TestDataHandler.writeDataToPropertiesBuyerApp();
@@ -33,14 +38,14 @@ public class EnvironmentSetup {
     }
 
 
-    @BeforeTest(alwaysRun = true)
-    public void initDriver() {
-        platform.set(System.getProperty("deviceType"));
+    @BeforeClass(alwaysRun = true)
+    public void initDriver() throws IOException, InterruptedException, JadbException {
+        platform.set(propertyFileHandle.getPropertyForExecution("executionPlatform"));
         Driver driver = null;
-        if(System.getProperty("deviceType").equalsIgnoreCase("android")) {
+        if(executionPlatform.equalsIgnoreCase("android")) {
             driver = new AndroidDriver();
         }
-        else if(System.getProperty("deviceType").equalsIgnoreCase("ios")) {
+        else if(executionPlatform.equalsIgnoreCase("ios")) {
             driver = new IosDriver();
         }
         if(env.equalsIgnoreCase("local")){
@@ -62,13 +67,13 @@ public class EnvironmentSetup {
         }
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void afterTest()
     {
         actions.get().getDriver().quit();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
         if(env.equalsIgnoreCase("local")) {

@@ -27,6 +27,10 @@ public class PropertyFileHandle {
         return  getPropertyValue(key,"src/main/resources/setup","appiumSetup.properties");
     }
 
+    public String getPropertyForExecution(String key){
+        return  getPropertyValue(key,"src/main/resources/setup","ExecutionSetup.properties");
+    }
+
     /*
     This method load config property file for browserstack and returns the value of the key
      */

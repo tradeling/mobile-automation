@@ -23,7 +23,7 @@ public class Login extends EnvironmentSetup {
     @Test
 	private void login_buyer()
     {
-    	
+    	loginScreen = new LoginScreen(actions.get());
     	String username = loginScreen.login_buyer(platform);
     	
         homeScreen = new HomeScreen(actions.get());

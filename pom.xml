@@ -39,8 +39,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>9</source>
+					<target>9</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -62,12 +62,20 @@
 						<appActivity>${appActivity}</appActivity>
 						<appPath></appPath>
 						<deviceType></deviceType>
-						<testingEnvironment>stage</testingEnvironment>
+						<testingEnvironment>test</testingEnvironment>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
@@ -91,7 +99,7 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.5</version>
-			<!--            <scope>test</scope>-->
+<!--			            <scope>test</scope>-->
 		</dependency>
 
 		<dependency>
@@ -126,6 +134,14 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.13.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.vidstige</groupId>
+			<artifactId>jadb</artifactId>
+			<version>v1.2.1</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
