@@ -23,7 +23,7 @@ public class EnvironmentSetup {
         reporting = new Reporting();
         reporting.initiateReport();
         if(env.equalsIgnoreCase("local")) {
-//            mobDriver.appiumInit();
+            mobDriver.appiumInit();
         }
         if(System.getProperty("appName").equalsIgnoreCase("buyerApp")){
             PreRequisites preRequisites = new PreRequisites();
@@ -31,7 +31,6 @@ public class EnvironmentSetup {
             TestDataHandler.writeDataToPropertiesBuyerApp();
         }
     }
-
 
     @BeforeTest(alwaysRun = true)
     public void initDriver() {
