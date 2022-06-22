@@ -13,4 +13,9 @@ public class EdukaanData {
     public static String shopLocationCityBuildingName = "Nahda Tower";
     public static String registrationSuccessfulMessage = "We are verifying your account";
     public static String productName = "Automation Test Product";
+
+    public static String CardName = "Mahmoud" ;
+    public static String CardNumber = "4543474002249996";
+    public static String ExpiryDate= "0525" ;
+
 }
