@@ -27,9 +27,13 @@ public class AddNewCardScreen
     @AndroidFindBy(xpath = "//*[@text='ADD NEW CARD']")
     MobileElement AddNewCard;
 
-    @iOSXCUITFindBy(id = "")
-    @AndroidFindBy(xpath = "")
-    MobileElement SuccessAdding_confirmationMessage;
+    @iOSXCUITFindBy(xpath = "//*[contains(@label='Card Added Successfully’)]")
+    @AndroidFindBy(xpath = "//android.widget.Toast 24")
+    MobileElement SuccessToast_confirmationMessage;
+
+    @iOSXCUITFindBy(id = "SAVE CARD")
+    @AndroidFindBy(xpath = "//*[@text='SAVE CARD']")
+    MobileElement SaveCard;
 
     MobileActions actions;
 
@@ -45,6 +49,13 @@ public class AddNewCardScreen
         actions.click(AddNewCard);
 }
     public String getAddingCardToastConfirmationMessage(){
-        return actions.getText(SuccessAdding_confirmationMessage);
+        actions.waitForElementToDisplay(SuccessToast_confirmationMessage);
+        String toaster = SuccessToast_confirmationMessage.getAttribute("name");
+        System.out.println(toaster);
+        return actions.getText(SuccessToast_confirmationMessage);
+    }
+    public void ClickOnSaveCard(){
+        actions.waitForElementToDisplay(SaveCard);
+        actions.click(SaveCard);
     }
 }

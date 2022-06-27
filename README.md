@@ -41,6 +41,31 @@ We are collaborative and very friendly, but we value your time and other people 
 
 You may follow this link for more step by step details for the setup https://www.swtestacademy.com/how-to-install-appium-on-mac/
 
+-in order to do the setup make sure your .bashprofile or .zshrc has declaration of JAVA_HOME as following:
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home
+then open Android studion -> open project -> select  mobile-edukaan-app/android  folder  
+-> from Android Studio -> prefereces -> Build, Execution, Deployment -> Build tools -> Gradle -> Gradle JDK -> pick version 11
+-Then refer to https://github.com/tradeling/mobile-edukaan-app -> ReadME file 
+-After finishing the setup open the project in your preferred IDE, and run yarn install , 
+ then run yarn setup , then run yarn prepare .
+-Then yarn setup:ios to setup pod Installation for ios
+
+-for Setting up environment variable
+Please run this command cp ./.env.development ./.env and then go to .env file and update it with your details.
+
+Please create src/config/appConfig.ts file and add the following lines to it
+
+import {
+devConfig,
+liveConfig,
+localConfig,
+liveFirebaseConfig,
+stageConfig,
+} from './app';
+export const appConfig = devConfig();
+
+-then Run with "yarn ios" or "yarn Android"
+
 # Project Details
 
 ## Framework

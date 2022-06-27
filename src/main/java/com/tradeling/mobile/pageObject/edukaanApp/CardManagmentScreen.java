@@ -20,6 +20,10 @@ public class CardManagmentScreen {
     @AndroidFindBy(xpath = "//*[@text='Delete']")
     MobileElement Delete;
 
+    @iOSXCUITFindBy(xpath = "")
+    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/child::android.view.ViewGroup")
+    MobileElement CardNumberList;
+
     MobileActions actions;
 
     public CardManagmentScreen(MobileActions action){
@@ -27,7 +31,7 @@ public class CardManagmentScreen {
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
     }
 
-    public void AddNewCard (){
+    public void AddNewCardCTA (){
         actions.waitForElementToDisplay(AddNewCardCTA);
         actions.click(AddNewCardCTA);
     }

@@ -14,7 +14,7 @@ public class EdukaanLaunchScreen {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView")
     MobileElement btn_skipLaunchScreen;
 
-    @iOSXCUITFindBy(accessibility = "GET STARTED")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"GET STARTED\"])[2]")
     @AndroidFindBy(xpath = "//android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.TextView")
     MobileElement btn_getStartedLaunchScreen;
 
@@ -28,6 +28,11 @@ public class EdukaanLaunchScreen {
         actions.acceptAlert();
         actions.click(btn_skipLaunchScreen);
         actions.click(btn_getStartedLaunchScreen);
+    }
+
+    public void WaitForAlertDisplaying()
+    {
+        actions.waitUntilAlertPresent();
     }
 
 }
