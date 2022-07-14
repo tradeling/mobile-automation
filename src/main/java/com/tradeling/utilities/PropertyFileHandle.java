@@ -31,6 +31,11 @@ public class PropertyFileHandle {
         return  getPropertyValue(key,"src/main/resources/setup","ExecutionSetup.properties");
     }
 
+    public String getPropertyForTestData(String key){
+        return  getPropertyValue(key,"src/main/resources/buyerApp/testData","testData.properties");
+
+    }
+
     /*
     This method load config property file for browserstack and returns the value of the key
      */

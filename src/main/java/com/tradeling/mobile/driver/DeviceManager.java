@@ -15,10 +15,12 @@ public class DeviceManager {
     List<JadbDevice> devices;
 
 
-    public DeviceManager() {
+    public DeviceManager(){
+
         this.jadbConnection = new JadbConnection();
     }
     String GetActiveDevice() throws IOException, InterruptedException, JadbException {
+        Process process = Runtime.getRuntime().exec("adb devices");
         return this.jadbConnection.getDevices().get(0).getSerial();
     }
     List<JadbDevice> GetActiveDevices()throws IOException, InterruptedException, JadbException{

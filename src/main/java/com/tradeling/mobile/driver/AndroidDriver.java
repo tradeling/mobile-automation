@@ -28,7 +28,7 @@ public class AndroidDriver extends Driver{
             String appPath = System.getProperty("appPath");
             String appName = System.getProperty("androidApp");
             if(!appPath.isEmpty()){
-               // caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
+                // caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             caps.setCapability(MobileCapabilityType.UDID, deviceID);
@@ -37,10 +37,12 @@ public class AndroidDriver extends Driver{
             caps.setCapability("appActivity", propertyFileHandle.getPropertyForExecution("appActivity"));
             caps.setCapability("appPackage", propertyFileHandle.getPropertyForExecution("appPackage"));
             caps.setCapability("autoGrantPermissions", true);
-//            caps.setCapability(MobileCapabilityType.NO_RESET, true);
+            caps.setCapability("ignoreUnimportantViews", true);
+            caps.setCapability("skipDeviceInitialization", true);
+            caps.setCapability("skipServerInstallation",true);
             caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
-//            caps.setCapability("unicodeKeyboard", true);
-//            caps.setCapability("resetKeyboard", false);
+            caps.setCapability("unicodeKeyboard", true);
+            caps.setCapability("resetKeyboard", true);
             driver = new io.appium.java_client.android.AndroidDriver<MobileElement>(new URL(
                     "http://" + propertyFileHandle.getPropertyForAppiumConfig("appiumServer") + ":" + propertyFileHandle.getPropertyForAppiumConfig("appiumPort") + "/wd/hub"), caps);
         }catch (Exception e)
@@ -50,6 +52,7 @@ public class AndroidDriver extends Driver{
 
         return driver;
     }
+
 
     @Override
     public AppiumDriver<MobileElement> createRemoteDriver() {
