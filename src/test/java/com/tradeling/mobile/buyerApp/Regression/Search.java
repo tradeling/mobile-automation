@@ -103,9 +103,11 @@ public class Search extends EnvironmentSetup {
     public void QTM5243()throws InterruptedException {
         launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH,Constants.REGION_UAE);
         loginScreen.loginAsGuest();
-//        searchScreen.search(searchDataPen);
+        searchScreen.search(searchDataPen);
         searchScreen.navigationBar(appSection.ACCOUNT);
         searchScreen.navigationBar(appSection.Cart);
         searchScreen.navigationBar(appSection.DEALS);
+        searchScreen.accessSearchSuggestion();
+        Assert.assertTrue(searchScreen.verifySearchResults(searchDataPen));
     }
 }

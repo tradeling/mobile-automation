@@ -1,4 +1,4 @@
-package com.tradeling.data.buyerApp
+package com.tradeling.data.buyerApp;
 
 public enum appSection {
     HOME("Home"),

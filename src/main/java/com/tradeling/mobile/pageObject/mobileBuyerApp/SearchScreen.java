@@ -41,20 +41,27 @@ public class SearchScreen {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='search-top-sellers-section']/parent::android.view.ViewGroup/child::*[1]/android.view.ViewGroup//android.widget.TextView")
     List<MobileElement> searchSuggestions;
 
-    @AndroidFindBy(id = "Categories_tab_bar")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='Categories_tab_bar']")
     MobileElement categories;
 
-    @AndroidFindBy(id = "Home_tab_bar")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='Home_tab_bar']")
     MobileElement home;
 
-    @AndroidFindBy(id = "Deals_tab_bar")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='Deals_tab_bar']")
     MobileElement deals;
 
-    @AndroidFindBy(id = "MyCart_tab_bar")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='MyCart_tab_bar']")
     MobileElement cart;
 
-    @AndroidFindBy(id = "MyAccount_tab_bar")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='MyAccount_tab_bar']")
     MobileElement acccount;
+
+    @AndroidFindBy(className = "android.widget.ScrollView")
+    MobileElement plpContainer;
+
+//    @AndroidFindBy(xpath = "(//android.widget.ScrollView//android.widget.ImageView)[1]")
+    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]")
+    MobileElement firstProduct;
 
 
     String dynamicSearchCount(String search){
@@ -62,9 +69,15 @@ public class SearchScreen {
         return Locator;
     }
 
+    public void SelectRandomProduct(){
+        actions.waitForElementToDisplay(plpContainer);
+        actions.clickWithoutWait(firstProduct);
+        actions.waitFor(6000);
+    }
+
     public void search(String searchData)throws InterruptedException{
-        actions.click(searchBlock);
-        actions.click(nestedSearchBlock);
+        actions.clickWithoutWait(searchBlock);
+        actions.clickWithoutWait(nestedSearchBlock);
         actions.enterText(nestedSearchBlock,searchData);
         actions.sendKeys(Keys.ENTER);
         Thread.sleep(3000);
@@ -94,7 +107,7 @@ public class SearchScreen {
 
 
     public void accessSearchSuggestion(){
-        actions.click(searchBlock);
+        actions.clickWithoutWait(searchBlock);
         searchSuggestion = searchSuggestions.size();
     }
 
@@ -145,18 +158,12 @@ public class SearchScreen {
     public boolean verifySearchResults(String searchData){
         actions.waitForElementToDisplay(searchBlock);
         Boolean flag = false;
-        int found=1;
         for (MobileElement searchResult:searchResults
              ) {
             System.out.println(searchResult.getText());
             if (searchResult.getText().contains(searchData)){
-                found++;
+                flag = true;
             }
-        }
-        if(validSearchResult.size()==found){
-            flag=true;
-        }else{
-            flag=false;
         }
         return flag;
     }

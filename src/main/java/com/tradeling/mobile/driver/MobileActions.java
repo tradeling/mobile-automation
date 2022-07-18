@@ -11,6 +11,7 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
@@ -45,12 +46,22 @@ public class MobileActions {
 
     public void clickWithoutWait(MobileElement elm){
         try{
+            waitFor(1000);
             elm.click();
             Reporting.getLogger().logPass("Click on field '" + Utilities.getElementNameString(elm) + "'");
         }catch (Exception e){
             e.printStackTrace();
             Reporting.getLogger().logFail("Exception occurred while performing Click on field '" + Utilities.getElementNameString(elm) + "'", e);
         }
+    }
+
+    public void clickOnCenterOfElm(MobileElement elm){
+        Point point = elm.getLocation();
+        int length = elm.getSize().getWidth();
+        int height = elm.getSize().getHeight();
+        int getY = point.getY();
+        int middleY = (int) (getY + height * 1.5);
+        new TouchAction(driver).tap(PointOption.point(length / 2, middleY)).release().perform();
     }
 
     public String getText(MobileElement ele) {
@@ -69,7 +80,7 @@ public class MobileActions {
 
 	public void enterText(MobileElement ele, String text) {
         try {
-            if(waitForElementToDisplay(ele)) {
+//            if(waitForElementToDisplay(ele)) {
                 waitFor(500);
                 if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
                     ele.setValue(text);
@@ -77,7 +88,7 @@ public class MobileActions {
                     ele.sendKeys(text);
                 }
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             Reporting.getLogger().logFail("Exception occurred while performing Enter Text in field '" + Utilities.getElementNameString(ele) + "'", e);

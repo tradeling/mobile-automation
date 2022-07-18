@@ -62,7 +62,7 @@
 						<appActivity>${appActivity}</appActivity>
 						<appPath></appPath>
 						<deviceType></deviceType>
-						<testingEnvironment>test</testingEnvironment>
+						<testingEnvironment>live</testingEnvironment>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>

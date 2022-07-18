@@ -3,6 +3,7 @@ package com.tradeling.mobile.driver;
 import com.beust.jcommander.Parameter;
 import com.tradeling.apis.requests.buyerApp.PreRequisites;
 import com.tradeling.apis.utility.TestDataHandler;
+import com.tradeling.data.buyerApp.EnvironmentCredintiols;
 import com.tradeling.mobile.pageObject.mobileBuyerApp.*;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.PropertyFileHandle;
@@ -29,6 +30,8 @@ public class EnvironmentSetup {
     public static String env = System.getProperty("environment");
     public static String targetApp = System.getProperty("appName");
 //    public static String targetApp ="buyerApp";
+
+    public EnvironmentCredintiols environmentCredintiols = new EnvironmentCredintiols();
 //    public static String executionPlatform = "android";
     public static String executionPlatform = System.getProperty("deviceType");
 
