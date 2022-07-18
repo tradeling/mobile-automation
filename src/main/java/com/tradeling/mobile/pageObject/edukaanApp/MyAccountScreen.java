@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class MyAccountScreen
 {
-    @iOSXCUITFindBy(id = "Manage cards")
+    @iOSXCUITFindBy(accessibility = "Manage cards")
     @AndroidFindBy(xpath = "//*[@text='Manage cards']")
     MobileElement CardManagement;
 

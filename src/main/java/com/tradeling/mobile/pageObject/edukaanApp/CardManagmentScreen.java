@@ -8,20 +8,20 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CardManagmentScreen {
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='ADD NEW CARD'])[1]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"cta_add_cc\"]")
     @AndroidFindBy(xpath = "//*[@text='ADD NEW CARD']")
     MobileElement AddNewCardCTA;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='Edit'])[1]")
-    @AndroidFindBy(xpath = "//*[@text='Edit']")
+    @iOSXCUITFindBy(accessibility = "cta_edit_cc-0")
+    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/child::android.view.ViewGroup//android.widget.TextView[@resource-id='cta_edit_cc-0']")
     MobileElement Edit;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='Delete'])[1]")
-    @AndroidFindBy(xpath = "//*[@text='Delete']")
+    @iOSXCUITFindBy(accessibility = "cta_delete_cc-0")
+    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/child::android.view.ViewGroup//android.widget.TextView[@resource-id='cta_delete_cc-0']")
     MobileElement Delete;
 
-    @iOSXCUITFindBy(xpath = "")
-    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/child::android.view.ViewGroup")
+    @iOSXCUITFindBy(accessibility = "****9271 Expires on 02/ 23 Edit Delete ****3614 Expires on 08/ 23 Edit Delete ****1111 Expires on 06/ 27 Edit Delete cta_add_cc")
+    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/child::android.view.ViewGroup//android.widget.TextView[contains(@resource-id,'cta_edit_cc')]")
     MobileElement CardNumberList;
 
     MobileActions actions;
@@ -31,7 +31,7 @@ public class CardManagmentScreen {
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
     }
 
-    public void AddNewCardCTA (){
+    public void ClickOnAddNewCardCTA (){
         actions.waitForElementToDisplay(AddNewCardCTA);
         actions.click(AddNewCardCTA);
     }

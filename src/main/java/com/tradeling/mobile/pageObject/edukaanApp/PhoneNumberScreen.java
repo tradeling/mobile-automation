@@ -19,6 +19,10 @@ public class PhoneNumberScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement btn_continuePhoneNumber;
 
+    @iOSXCUITFindBy(accessibility = "The phone number provided is incorrect")
+    @AndroidFindBy(xpath = "//*[@text='The phone number provided is incorrect']")
+    MobileElement InvalidPhoneNumberMsg;
+
     public PhoneNumberScreen(MobileActions action){
             this.actions = action;
             PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -27,6 +31,12 @@ public class PhoneNumberScreen {
     public void addPhoneNumberInPhoneNumberScreen(String phoneNumber){
         actions.enterText(txt_phoneNumber, phoneNumber);
         actions.click(btn_continuePhoneNumber);
+    }
+
+    public String GetInvalidPhoneNumberMessage(){
+
+        actions.waitForElementToDisplay(InvalidPhoneNumberMsg);
+        return InvalidPhoneNumberMsg.getText();
     }
 
 }
