@@ -34,8 +34,8 @@ public class AndroidDriver extends Driver{
             caps.setCapability(MobileCapabilityType.UDID, deviceID);
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
             caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, propertyFileHandle.getPropertyForDeviceDetails("android_version"));
-            caps.setCapability("appActivity", propertyFileHandle.getPropertyForExecution("appActivity"));
-            caps.setCapability("appPackage", propertyFileHandle.getPropertyForExecution("appPackage"));
+            caps.setCapability("appActivity", System.getProperty("appActivity"));
+            caps.setCapability("appPackage", System.getProperty("appPackage"));
             caps.setCapability("autoGrantPermissions", true);
             caps.setCapability("ignoreUnimportantViews", true);
             caps.setCapability("skipDeviceInitialization", true);
