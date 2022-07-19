@@ -21,6 +21,7 @@
 		<profile>
 			<id>edukaan</id>
 			<properties>
+				<appName>edukaan</appName>
 				<testNGSuite>edukaan-testng.xml</testNGSuite>
 				<iosApp>edukaan.app</iosApp>
 				<bundleId>com.tradeling.edukaan</bundleId>

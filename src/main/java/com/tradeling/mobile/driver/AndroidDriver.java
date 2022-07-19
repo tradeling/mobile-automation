@@ -28,14 +28,14 @@ public class AndroidDriver extends Driver{
             String appPath = System.getProperty("appPath");
             String appName = System.getProperty("androidApp");
             if(!appPath.isEmpty()){
-//                 caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
+                // caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             caps.setCapability(MobileCapabilityType.UDID, deviceID);
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
             caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, propertyFileHandle.getPropertyForDeviceDetails("android_version"));
-            caps.setCapability("appActivity", System.getProperty("appActivity"));
-            caps.setCapability("appPackage", System.getProperty("appPackage"));
+            caps.setCapability("appActivity", propertyFileHandle.getPropertyForExecution("appActivity"));
+            caps.setCapability("appPackage", propertyFileHandle.getPropertyForExecution("appPackage"));
             caps.setCapability("autoGrantPermissions", true);
             caps.setCapability("ignoreUnimportantViews", true);
             caps.setCapability("skipDeviceInitialization", true);
