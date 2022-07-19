@@ -34,7 +34,7 @@ public class EmailPasswordScreen {
 
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[`label == \"Password Changed Successfully\"`][1]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Password Changed Successfully']")
-     MobileElement label_successMessage;
+    MobileElement label_successMessage;
 
     public EmailPasswordScreen(MobileActions action) {
         try {

@@ -29,7 +29,7 @@ public class RequestUtility {
     }
 
     public String createOtpVerificationPayload(String email) {
-        try {
+    try {
             Map<String, Object> verifyOtpPayload = new HashMap<String, Object>();
             verifyOtpPayload.put("username", email);
             verifyOtpPayload.put("code", "111111");

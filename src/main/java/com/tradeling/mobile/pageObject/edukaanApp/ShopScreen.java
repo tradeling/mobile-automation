@@ -11,19 +11,19 @@ public class ShopScreen extends EdukaanCommon{
     MobileActions actions;
 
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Shop name *\"]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[1]")
+    @AndroidFindBy(accessibility = "txt_shop_name")
     MobileElement txt_shopName;
 
     @iOSXCUITFindBy(accessibility = "Please enter your shop type")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup")
+    @AndroidFindBy(accessibility = "select_shop_type")
     MobileElement ddl_shopType;
 
     @iOSXCUITFindBy(accessibility = "Final Regression Collection Regression Collection Restaurant Cafeteria Wholesaler Supermarket Minimarket Grocery Store Barber Shop Beauty Salon Tea Shop Baqala")
-    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"select_shop_type\"]/android.view.ViewGroup")
     MobileElement menu_shopType;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Please provide your TRN\"])[3]/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText[2]")
+    @AndroidFindBy(accessibility = "txt_trn")
     MobileElement txt_taxRegistrationNumber;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"CONTINUE\"])[2]")

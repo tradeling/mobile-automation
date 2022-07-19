@@ -4,10 +4,12 @@
 
     <test name="Regression Test">
         <classes>
-            <class name="com.tradeling.mobile.edukaanApp.test.Registration" />
-            <class name="com.tradeling.mobile.edukaanApp.test.Login" />
-            <class name="com.tradeling.mobile.edukaanApp.test.Search" />
-            <class name="com.tradeling.mobile.edukaanApp.test.Checkout" />
+<!--            <class name="com.tradeling.mobile.edukaanApp.test.Registration" />-->
+<!--            <class name="com.tradeling.mobile.edukaanApp.test.Login" />-->
+<!--            <class name="com.tradeling.mobile.edukaanApp.test.Search" />-->
+<!--            <class name="com.tradeling.mobile.edukaanApp.test.Checkout" />-->
+            <class name="com.tradeling.mobile.edukaanApp.test.CardMangment">
+            </class>
         </classes>
     </test>
 </suite>
