@@ -28,7 +28,7 @@ public class AndroidDriver extends Driver{
             String appPath = System.getProperty("appPath");
             String appName = System.getProperty("androidApp");
             if(!appPath.isEmpty()){
-                // caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
+                 caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             caps.setCapability(MobileCapabilityType.UDID, deviceID);
