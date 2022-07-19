@@ -5,7 +5,9 @@ import com.tradeling.utilities.PropertyFileHandle;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import se.vidstige.jadb.JadbException;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public abstract class Driver {
@@ -53,7 +55,7 @@ public abstract class Driver {
         caps.setCapability("name", "Execution "+ Reporting.runId);
     }
 
-    public abstract AppiumDriver<MobileElement> createLocalDriver();
+    public abstract AppiumDriver<MobileElement> createLocalDriver() throws IOException, InterruptedException, JadbException;
 
     public abstract AppiumDriver<MobileElement> createRemoteDriver();
 }

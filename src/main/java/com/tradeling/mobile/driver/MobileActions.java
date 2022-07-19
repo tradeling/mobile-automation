@@ -3,8 +3,10 @@ package com.tradeling.mobile.driver;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.Utilities;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
@@ -24,6 +26,7 @@ public class MobileActions {
 
     static AppiumDriver<MobileElement> driver;
 
+
     public MobileActions(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
@@ -31,6 +34,7 @@ public class MobileActions {
     public void click(MobileElement ele) {
         try {
             waitForElementIsClickable(ele);
+//            waitForElementToDisplay(ele);
             ele.click();
             Reporting.getLogger().logPass("Click on field '" + Utilities.getElementNameString(ele) + "'");
         } catch (Exception e) {
@@ -39,29 +43,37 @@ public class MobileActions {
         }
     }
 
-    public String getText(MobileElement ele){
-        String text = "";
+    public void clickWithoutWait(MobileElement elm){
         try{
-            waitForElementToDisplay(ele);
-            text = ele.getText();
-            Reporting.getLogger().logPass("Fetched text from element '"+ Utilities.getElementNameString(ele) + "': '" + text + "'");
-
+            elm.click();
+            Reporting.getLogger().logPass("Click on field '" + Utilities.getElementNameString(elm) + "'");
         }catch (Exception e){
             e.printStackTrace();
-            Reporting.getLogger().logFail("Exception occurred while fetching text from element '" + Utilities.getElementNameString(ele) + "'", e);
+            Reporting.getLogger().logFail("Exception occurred while performing Click on field '" + Utilities.getElementNameString(elm) + "'", e);
+        }
+    }
 
+    public String getText(MobileElement ele) {
+        String text = "";
+        try {
+            waitForElementToDisplay(ele);
+            text = ele.getText();
+            Reporting.getLogger().logInfo("Fetched text from element '"+ Utilities.getElementNameString(ele) + "': '" + text + "'");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Exception occurred while fetching text from element '" + Utilities.getElementNameString(ele) + "'", e);
         }
         return text;
     }
 
-    public void enterText(MobileElement ele, String text) {
+	public void enterText(MobileElement ele, String text) {
         try {
-            if(waitForElementIsEnabled(ele)) {
+            if(waitForElementToDisplay(ele)) {
                 waitFor(500);
                 if(EnvironmentSetup.platform.get().equalsIgnoreCase("android")) {
                     ele.setValue(text);
-                }
-                else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")){
+                } else if(EnvironmentSetup.platform.get().equalsIgnoreCase("ios")) {
                     ele.sendKeys(text);
                 }
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
@@ -83,6 +95,7 @@ public class MobileActions {
                     ele.sendKeys(text);
                     this.hideKeyboard();
                 }
+                
                 Reporting.getLogger().logPass("Entered text '" + text + "' in field '" + Utilities.getElementNameString(ele) + "'");
             }
         } catch (Exception e) {
@@ -91,12 +104,27 @@ public class MobileActions {
         }
     }
 
-    public void waitUntilAlertPresent(){
+    @SuppressWarnings("deprecation")
+    public void sendKeys(Keys... keysToSend) {
+        try {
+        	driver.getKeyboard().sendKeys(keysToSend);
+            Reporting.getLogger().logPass("Entered keys on soft keyboard");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Reporting.getLogger().logFail("Exception occurred while performing Enter Text in field '", e);
+        }
+    }
+    
+    public String getPageSource() {
+    	return driver.getPageSource();
+    }
+
+    public void waitUntilAlertPresent() {
         WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public void acceptAlert(){
+    public void acceptAlert() {
         try{
             Alert alert = getDriver().switchTo().alert();
             alert.accept();
@@ -211,6 +239,22 @@ public class MobileActions {
 
     }
 
+    public void waitForElementIsNotDisplayed(MobileElement ele){
+        try {
+            do {
+                Thread.sleep(500);
+            }while (ele.isDisplayed());
+        }catch (Exception e){
+
+        }
+    }
+
+    public MobileElement Element(String locator) throws InterruptedException {
+            MobileElement element;
+            Thread.sleep(500);
+            element = getDriver().findElement(By.xpath(locator));
+            return element;
+    }
 
     public AppiumDriver<MobileElement> getDriver(){
         return driver;
@@ -250,15 +294,15 @@ public class MobileActions {
         }
     }
 
+    // Receives the start and end touch point on screen. The values can be between 0 - 1
     public void scrollDown(double startPoint, double endPoint) throws InterruptedException{
-        Thread.sleep(1000);
-        Dimension dimension = this.getDriver().manage().window().getSize();
+        Dimension dimension = driver.manage().window().getSize();
         int scrollStart = (int) (dimension.getHeight() * startPoint);
         int scrollEnd = (int) (dimension.getHeight() * endPoint);
-        TouchAction swipe = new TouchAction(this.getDriver())
-                .press(PointOption.point(0,scrollStart))
+        new TouchAction(driver)
+                .press(PointOption.point(0, scrollStart))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(800)))
-                .moveTo(PointOption.point(0,scrollEnd))
+                .moveTo(PointOption.point(0, scrollEnd))
                 .release()
                 .perform();
     }
@@ -268,4 +312,6 @@ public class MobileActions {
         getDriver().quit();
     }
 
+   
+    
 }

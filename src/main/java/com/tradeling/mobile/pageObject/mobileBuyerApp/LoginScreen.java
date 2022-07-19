@@ -1,18 +1,21 @@
 package com.tradeling.mobile.pageObject.mobileBuyerApp;
 
+import com.tradeling.data.buyerApp.Constants;
 import com.tradeling.mobile.driver.MobileActions;
+
 import com.tradeling.reporting.Reporting;
+import com.tradeling.utilities.PropertyFileHandle;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class LoginScreen {
 
     MobileActions actions;
-
-
 
     @iOSXCUITFindBy(accessibility = "Email address login_email_address")
     @AndroidFindBy(accessibility = "login_email_address")
@@ -38,6 +41,9 @@ public class LoginScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Wrong email or password']")
     MobileElement label_invalidCredentials;
 
+    @AndroidFindBy(xpath = "//*[contains(@text,'Forgotten')]")
+    MobileElement forgetPasswordBtn;
+
     public LoginScreen(MobileActions action) {
         this.actions = action;
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -49,6 +55,27 @@ public class LoginScreen {
         actions.hideKeyboard();
         actions.click(btn_login);
     }
+
+    public void loginAsGuest(){
+        actions.click(link_continueAsGuest);
+    }
+    
+    public String login_buyer(ThreadLocal<String> platform)
+    {
+        String username = PropertyFileHandle.getPropertyValue("unverifiedBuyerEmail", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+        String password = PropertyFileHandle.getPropertyValue("unverifiedBuyerPassword", Constants.buyerTestDataFilePath,Constants.buyerTestDataFile);
+        LaunchScreen launchScreen = new LaunchScreen(actions);
+        
+        if(platform.get().equalsIgnoreCase("ios")) {
+            //launchScreen.acceptNotificationAlert(false);
+        }
+        launchScreen.selectLanguageAndRegion(Constants.LANG_ENGLISH, Constants.REGION_UAE);
+
+		LoginScreen loginScreen = new LoginScreen(actions);
+        loginScreen.enterUserAndPass(username, password);
+        
+        return username;
+   }
 
 
     public void navigateToRegistration(){
@@ -68,5 +95,28 @@ public class LoginScreen {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    public void typeUserName(String userName){
+        actions.click(input_loginEmail);
+        actions.enterText(input_loginEmail,userName);
+        Reporting.getLogger().logInfo("User loggged in using credintiols "+userName);
+    }
+
+    public void typePassword(String password){
+        actions.click(input_loginPass);
+        actions.enterText(input_loginPass,password);
+        Reporting.getLogger().logInfo("User loggged in using credintiols "+password);
+    }
+
+    public void forgettPassword(){
+        actions.click(forgetPasswordBtn);
+        Reporting.getLogger().logInfo("User attempt to tap on forget password");
+    }
+
+    public void tabLogin() throws InterruptedException {
+        actions.click(btn_login);
+        Thread.sleep(1000);
+        Reporting.getLogger().logInfo("user tab on loggin");
     }
 }

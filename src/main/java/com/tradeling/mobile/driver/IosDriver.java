@@ -16,7 +16,6 @@ public class IosDriver extends  Driver{
 
     @Override
     public AppiumDriver<MobileElement> createLocalDriver() {
-
         AppiumDriver<MobileElement> driver = null;
         DesiredCapabilities caps = new DesiredCapabilities();
         try {
@@ -26,7 +25,6 @@ public class IosDriver extends  Driver{
             if(!appPath.isEmpty()){
                 caps.setCapability(MobileCapabilityType.APP, new File(appPath.trim() + "/" + appName.trim()).getAbsolutePath());
             }
-
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, propertyFileHandle.getPropertyForDeviceDetails("ios_deviceName"));
             caps.setCapability(MobileCapabilityType.UDID, propertyFileHandle.getPropertyForDeviceDetails("ios_deviceId"));
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
