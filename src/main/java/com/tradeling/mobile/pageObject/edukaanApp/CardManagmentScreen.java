@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class CardManagmentScreen {
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name=\"cta_add_cc\"]")
-    @AndroidFindBy(xpath = "//*[@text='ADD NEW CARD']")
+    @AndroidFindBy(accessibility = "cta_add_cc")
     MobileElement AddNewCardCTA;
 
     @iOSXCUITFindBy(accessibility = "cta_edit_cc-0")

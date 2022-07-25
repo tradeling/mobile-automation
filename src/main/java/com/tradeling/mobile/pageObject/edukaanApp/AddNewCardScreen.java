@@ -9,22 +9,20 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AddNewCardScreen
 {
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='Card holder name'])[2]")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/" +
-            "android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/" +
-            "android.view.ViewGroup/android.widget.EditText[1]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"txt_card_holder_name\"]")
+    @AndroidFindBy(accessibility = "txt_card_holder_name")
     MobileElement CardHolderName;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='4242 0123 4564 8901'])[3]/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "//*[@text='4242 0123 4564 8901']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"txt_card_number\"]")
+    @AndroidFindBy(accessibility = "txt_card_number")
     MobileElement CardNumber;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='MM/YY'])[3]/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "//*[@text='MM/YY']")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"txt_expiry_date\"]")
+    @AndroidFindBy(accessibility = "txt_expiry_date")
     MobileElement ExpiryDate;
 
     @iOSXCUITFindBy(id = "ADD NEW CARD")
-    @AndroidFindBy(xpath = "//*[@text='ADD NEW CARD']")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"cta_submit_card\"]/android.view.ViewGroup")
     MobileElement AddNewCard;
 
     @iOSXCUITFindBy(xpath = "//*[contains(@label='Card Added Successfully’)]")
