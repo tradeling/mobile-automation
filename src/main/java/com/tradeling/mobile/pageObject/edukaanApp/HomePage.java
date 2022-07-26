@@ -18,13 +18,16 @@ public class HomePage {
     MobileElement txt_searchComponent;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"What are you looking for today?\"])[2]")
-    @AndroidFindBy(xpath = "//android.widget.EditText")
+    @AndroidFindBy(accessibility = "cta_search_bar")
     MobileElement txt_editSearchComponent;
 
     @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"10 AED 150.00 Excl. VAT View Cart\"])[2]")
     @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup")
     MobileElement btn_viewCart;
 
+    @iOSXCUITFindBy(accessibility="cta_account_menu")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"cta_account_menu\"]/android.view.ViewGroup")
+    MobileElement MyAccountLogo;
     public HomePage(MobileActions action){
         this.actions = action;
         PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
@@ -32,7 +35,7 @@ public class HomePage {
 
     public boolean searchComponentIsDisplayed()  {
         actions.waitForElementToDisplay(txt_searchComponent);
-      return  actions.waitForElementToDisplay(txt_searchComponent);
+        return  actions.waitForElementToDisplay(txt_searchComponent);
     }
 
     public void searchWithProductName(String productName) {
@@ -46,6 +49,11 @@ public class HomePage {
 
     public void pressOnViewCart() {
         actions.click(btn_viewCart);
+    }
+
+    public void pressOnMyAccountLogo() {
+        actions.waitForElementToDisplay(MyAccountLogo);
+        actions.click(MyAccountLogo);
     }
 
 }

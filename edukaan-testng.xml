@@ -4,6 +4,7 @@
 
     <test name="Regression Test">
         <classes>
+            <class name="com.tradeling.mobile.edukaanApp.test.CardMangment"/>
             <class name="com.tradeling.mobile.edukaanApp.test.Registration" />
             <class name="com.tradeling.mobile.edukaanApp.test.Login" />
             <class name="com.tradeling.mobile.edukaanApp.test.Search" />

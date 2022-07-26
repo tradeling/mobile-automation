@@ -33,8 +33,8 @@ public class EnvironmentSetup {
     }
 
 
-    @BeforeTest(alwaysRun = true)
-    public void initDriver() {
+    @BeforeMethod(alwaysRun = true)
+    public void initDriver(Method method) {
         platform.set(System.getProperty("deviceType"));
         Driver driver = null;
         if(System.getProperty("deviceType").equalsIgnoreCase("android")) {
@@ -49,11 +49,6 @@ public class EnvironmentSetup {
         else if(env.equalsIgnoreCase("remote")){
             actions.set(new MobileActions(driver.createRemoteDriver()));
         }
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(Method method)
-    {
         try {
             String test = method.getName();
             reporting.setLogger(method.getName() + " ("+ System.getProperty("deviceType")+")");
@@ -62,13 +57,14 @@ public class EnvironmentSetup {
         }
     }
 
-    @AfterTest(alwaysRun = true)
+
+    @AfterMethod(alwaysRun = true)
     public void afterTest()
     {
         actions.get().getDriver().quit();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
         if(env.equalsIgnoreCase("local")) {

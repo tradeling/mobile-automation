@@ -96,4 +96,16 @@ public class RequestUtility {
             return null;
         }
     }
+
+    public static String AddNewCard(){
+        try {
+            Map<String, Object> AddNewCardPayload = new HashMap<>();
+            AddNewCardPayload = Utilities.readJson("src/main/resources/edukaanApp/apiRequestBody/AddCard.json");
+            return new ObjectMapper().writeValueAsString(AddNewCardPayload);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
