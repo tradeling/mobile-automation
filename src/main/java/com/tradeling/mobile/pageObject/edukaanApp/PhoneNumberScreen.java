@@ -11,22 +11,32 @@ public class PhoneNumberScreen {
 
     MobileActions actions;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"581234567\"])[5]/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.EditText")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name=\"txt_phone_number\"]")
+    @AndroidFindBy(accessibility = "txt_phone_number")
     MobileElement txt_phoneNumber;
 
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"CONTINUE\"])[2]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"txt_phone_number_cta\"])[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
     MobileElement btn_continuePhoneNumber;
 
+    @iOSXCUITFindBy(accessibility = "The phone number provided is incorrect")
+    @AndroidFindBy(xpath = "//*[@text='The phone number provided is incorrect']")
+    MobileElement InvalidPhoneNumberMsg;
+
     public PhoneNumberScreen(MobileActions action){
-            this.actions = action;
-            PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
+        this.actions = action;
+        PageFactory.initElements(new AppiumFieldDecorator(actions.getDriver()), this);
     }
 
     public void addPhoneNumberInPhoneNumberScreen(String phoneNumber){
         actions.enterText(txt_phoneNumber, phoneNumber);
         actions.click(btn_continuePhoneNumber);
+    }
+
+    public String GetInvalidPhoneNumberMessage(){
+
+        actions.waitForElementToDisplay(InvalidPhoneNumberMsg);
+        return InvalidPhoneNumberMsg.getText();
     }
 
 }
