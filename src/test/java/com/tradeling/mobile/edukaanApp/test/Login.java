@@ -40,7 +40,7 @@ public class Login extends EnvironmentSetup {
 
     @Test
     public void userCanLoginSuccessfully() {
-
+        Initialization();
         phoneNumberScreen.addPhoneNumberInPhoneNumberScreen(RequestUtility.phoneNumber);
         otpScreen.addOTPValue(EdukaanData.otpValue);
         Assert.assertTrue(homePage.searchComponentIsDisplayed());
@@ -48,13 +48,13 @@ public class Login extends EnvironmentSetup {
 
     @Test
     public void userLoginWithIncorrectPhoneNumber() {
-
+        Initialization();
         phoneNumberScreen.addPhoneNumberInPhoneNumberScreen(EdukaanData.IncorrectPhoneNumber);
         Assert.assertEquals(phoneNumberScreen.GetInvalidPhoneNumberMessage(),"The phone number provided is incorrect");
     }
     @Test
     public void userLoginWithInvalidOtp() {
-
+        Initialization();
         phoneNumberScreen.addPhoneNumberInPhoneNumberScreen(RequestUtility.phoneNumber);
         otpScreen.addOTPValue(EdukaanData.InvalidOtpValue);
         Assert.assertTrue(otpScreen.GetInvalidOTPMessage());
