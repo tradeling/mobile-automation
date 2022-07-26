@@ -29,22 +29,14 @@ public class Checkout extends EnvironmentSetup {
 		homeScreen = new HomeScreen(actions.get());
 		cartScreen = new CartScreen(actions.get());
 		plpScreen = new PLPScreen(actions.get());
-
 		loginScreen.login_buyer(platform);
-
-		homeScreen.searchBox(Constants.Search_Keyword);
-
+//		homeScreen.searchBox(Constants.Search_Keyword);
 		plpScreen.clickOnProduct();
-
 		pdpScreen.btnAddToCartPDP();
-
 		pdpScreen.addToCartBtnPopup();
 		pdpScreen.btnCheckoutPopup();
-
 		cartScreen.btnCheckoutOnCart();
-
 		checkoutScreen.createAddress();
-
 		checkoutScreen.btnBankTransferCheckout();
 		checkoutScreen.btnProceedToReviewCheckout();
 		checkoutScreen.btnPurchaseCheckout();

@@ -1,22 +1,46 @@
 package com.tradeling.mobile.driver;
 
+import com.beust.jcommander.Parameter;
 import com.tradeling.apis.requests.buyerApp.PreRequisites;
 import com.tradeling.apis.utility.TestDataHandler;
+import com.tradeling.data.buyerApp.EnvironmentCredintiols;
+import com.tradeling.mobile.pageObject.mobileBuyerApp.*;
 import com.tradeling.reporting.Reporting;
 import com.tradeling.utilities.PropertyFileHandle;
 import org.testng.annotations.*;
+import se.vidstige.jadb.JadbException;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class EnvironmentSetup {
 
+    public SearchScreen searchScreen;
+    public LoginScreen loginScreen;
+    public LaunchScreen launchScreen;
+    public HomeScreen homeScreen;
+    public AccountScreen accountScreen;
+    public EmailPasswordScreen emailPasswordScreen;
+    public OTPScreen otpScreen;
+    public DocumentUploadScreen documentUploadScreen;
+    public RegistrationScreen registrationScreen;
+    public BusinessProfileScreen businessProfileScreen;
+    public CompanyProfileScreen companyProfileScreen;
+    public static PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
     public static String env = System.getProperty("environment");
+    public static String targetApp = System.getProperty("appName");
+//    public static String targetApp ="buyerApp";
+
+    public EnvironmentCredintiols environmentCredintiols = new EnvironmentCredintiols();
+//    public static String executionPlatform = "android";
+    public static String executionPlatform = System.getProperty("deviceType");
+
     MobileDriver mobDriver = new MobileDriver();
     static Reporting reporting;
-    public static PropertyFileHandle propertyFileHandle = new PropertyFileHandle();
     public static ThreadLocal<String> platform = new ThreadLocal<String>();
 
     public ThreadLocal<MobileActions> actions = new ThreadLocal<MobileActions>();
+
 
     @BeforeSuite(alwaysRun = true)
     public void initEnvironment() {
@@ -25,7 +49,7 @@ public class EnvironmentSetup {
         if(env.equalsIgnoreCase("local")) {
 //            mobDriver.appiumInit();
         }
-        if(System.getProperty("appName").equalsIgnoreCase("buyerApp")){
+        if(targetApp.equalsIgnoreCase("buyerApp")){
             PreRequisites preRequisites = new PreRequisites();
             preRequisites.createUnverifiedBuyer();
             TestDataHandler.writeDataToPropertiesBuyerApp();
@@ -33,14 +57,14 @@ public class EnvironmentSetup {
     }
 
 
-    @BeforeTest(alwaysRun = true)
-    public void initDriver() {
-        platform.set(System.getProperty("deviceType"));
+    @BeforeMethod(alwaysRun = true)
+    public void initDriver(Method method) throws IOException, InterruptedException, JadbException {
+        platform.set(executionPlatform);
         Driver driver = null;
-        if(System.getProperty("deviceType").equalsIgnoreCase("android")) {
+        if(executionPlatform.equalsIgnoreCase("android")) {
             driver = new AndroidDriver();
         }
-        else if(System.getProperty("deviceType").equalsIgnoreCase("ios")) {
+        else if(executionPlatform.equalsIgnoreCase("ios")) {
             driver = new IosDriver();
         }
         if(env.equalsIgnoreCase("local")){
@@ -49,11 +73,17 @@ public class EnvironmentSetup {
         else if(env.equalsIgnoreCase("remote")){
             actions.set(new MobileActions(driver.createRemoteDriver()));
         }
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(Method method)
-    {
+        loginScreen = new LoginScreen(actions.get());
+        launchScreen = new LaunchScreen(actions.get());
+        homeScreen = new HomeScreen(actions.get());
+        accountScreen = new AccountScreen(actions.get());
+        emailPasswordScreen = new EmailPasswordScreen(actions.get());
+        searchScreen = new SearchScreen(actions.get());
+        otpScreen = new OTPScreen(actions.get());
+        documentUploadScreen = new DocumentUploadScreen(actions.get());
+        registrationScreen = new RegistrationScreen(actions.get());
+        businessProfileScreen = new BusinessProfileScreen(actions.get());
+        companyProfileScreen = new CompanyProfileScreen(actions.get());
         try {
             String test = method.getName();
             reporting.setLogger(method.getName() + " ("+ System.getProperty("deviceType")+")");
@@ -62,13 +92,15 @@ public class EnvironmentSetup {
         }
     }
 
-    @AfterTest(alwaysRun = true)
+
+
+    @AfterMethod(alwaysRun = true)
     public void afterTest()
     {
         actions.get().getDriver().quit();
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         reporting.closeReporting();
         if(env.equalsIgnoreCase("local")) {
